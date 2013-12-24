@@ -61,10 +61,10 @@ if($db==0)
   
   
   <script>
-  $(function() {
-    $( "#tabs" ).tabs();
-  });
-  
+//  $(function() {
+//    $( "#tabs" ).tabs();
+//  });
+//  
   $(function() {
 			$('#startTime').timepicker();
 		  });
@@ -90,7 +90,7 @@ if($db==0)
 <div id="container">
 	
     <?php
-
+$page=$_REQUEST['page'];
      $name=$_SESSION['uname'];
    $r_id=$_SESSION['r_id'];
    
@@ -176,18 +176,24 @@ $update2 = mysql_query("update visit_register set proc_status=0 where visit_id='
    
    
    <div id="tabs">
-  <ul>
-    <li><a href="#tabs-1">All bills</a></li>
-    <li><a href="#tabs-5">My duty</a></li> 
-    <li><a href="#tabs-6">My bills</a></li> 
-    <li><a href="#tabs-2">My Receipts</a></li>
-    <li><a href="#tabs-3">Cancelled Bills</a></li>
+       <h3>
+           <p><a href="dashboard_new1.php?page=1">All bills</a>&nbsp;&nbsp;||
+    <a href="dashboard_new1.php?page=5">My duty</a>&nbsp;&nbsp;||
+    <a href="dashboard_new1.php?page=6">My bills</a>&nbsp;&nbsp; ||
+    <a href="dashboard_new1.php?page=2">My Receipts</a>&nbsp;&nbsp;||
+    <a href="dashboard_new1.php?page=3">Cancelled Bills</a>&nbsp;&nbsp;||
      
-    <li><a href="#tabs-4">My Account</a></li>
-	   
-  </ul>
-  
-   <div id="tabs-1">
+    <a href="dashboard_new1.php?page=4">My Account</a>
+	  </p> 
+ </h3>
+
+       <?php
+       if($page==1)
+       {
+           echo 'page1';
+           ?>
+       
+          <div id="tabs-1">
    
      
    
@@ -255,8 +261,17 @@ $update2 = mysql_query("update visit_register set proc_status=0 where visit_id='
 			   
 			   ?>
       
-      
-      
+
+       
+       <?php
+       }
+       ?>
+       <?php
+       if($page==2)
+       {
+           echo 'page2';
+       ?>
+             
      <div id="tabs-2">
      
         <form>
@@ -323,8 +338,16 @@ $update2 = mysql_query("update visit_register set proc_status=0 where visit_id='
    
 <?php //=$pagination;?>
    </div>
-   <!-- cancelled biils        -->
-	<div id="tabs-3">
+    
+       <?php  
+       }
+       ?>
+       <?php
+       if($page==3)
+       {
+           echo 'page3';
+       ?>
+       	<div id="tabs-3">
         <form>
             <div class="bill_clr">
 			    <div class="l_ft dash_width"><span>VisitID</span></div>
@@ -389,8 +412,17 @@ $res=mysql_query("SELECT * FROM opd_bill where proc_status=0"); ?>
 
       </form>
     </div>
-   
-    <div id="tabs-4">
+
+          
+       <?php  
+       }
+       ?>
+      <?php
+       if($page==4)
+       {
+           echo 'page4';
+       ?>
+          <div id="tabs-4">
     <?php 
 	 //collection=;
 	 
@@ -559,7 +591,18 @@ $vendor=$_POST['vendor'];
         
       </div>
  
-	 
+           
+      <?php  
+       }
+       ?>
+          
+           
+           <?php
+       if($page==5)
+       {
+           echo 'page5';
+      ?>
+           	 
       <div id="tabs-5">
         <form method="post" action="">
           
@@ -680,7 +723,16 @@ $vendor=$_POST['vendor'];
              
         </form>
       </div>
-	  <div id="tabs-6">
+
+        <?php   
+       }
+       ?>
+          <?php
+       if($page==6)
+       {
+           echo 'page6';
+       ?>
+       <div id="tabs-6">
 	<?php  
 	  $uname= $_SESSION['uname'];
 	  $_SESSION['StartDate']=$StartDate;
@@ -834,7 +886,10 @@ while($data=mysql_fetch_array($biquery)){
 </div>
 			
 		</div>
-      <div class="cls"></div>
+           <?php  
+       }
+       ?>
+<div class="cls"></div>
 </div>
    <!-- close menubar-->
     <div>
