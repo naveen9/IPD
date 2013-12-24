@@ -6,6 +6,8 @@ include('condb.php');
 //$p_id=$_SESSION['p_id'];
 //$v_id=$_SESSION['v_id'];
 $b_id=$_SESSION['b_id'];
+$name=$_SESSION['uname'];
+$proc_status=1;
 $p_name=$_SESSION['p_name'];
 $s_proc_id=$_SESSION['s_proc_id'];
 $p_id=$_SESSION['p_id'];
@@ -54,7 +56,7 @@ if(isset($_POST['add']))
         $dom=$_SESSION['dom']=$dom;
 
 
-        mysql_query("insert into patient_medicine values ('','$p_id','$visit_id','$b_id','$dom','$p_name','$bed_no','$m_name','$batch_no','$mrp','$packs','$quantity','$exp_date','$tax','$total')")or die(mysql_error());
+        mysql_query("insert into patient_medicine values ('','$p_id','$visit_id','$b_id','$dom','$p_name','$bed_no','$m_name','$batch_no','$mrp','$packs','$quantity','$exp_date','$tax','$total','$billtime','$name')")or die(mysql_error());
         
         $sql=mysql_query("select * from medicine_store where batch_no='$batch_no'")or die(mysql_error());
             $data=mysql_fetch_array($sql);
@@ -132,7 +134,7 @@ if(isset($_POST['cancel']))
 if(isset($_POST['newe']))
 
 {
-    mysql_query("update opd_bill set grand_total='$sub_total',due_amount='$sub_total',status='unpaid',billeddate='$billdate',billedtime='$billtime',proc_status='$proc_status',reception='$uname' where bill_id='$b_id' and visit_id='$visit_id'")or die(mysql_error());
+    mysql_query("update opd_bill set grand_total='$sub_total',due_amount='$sub_total',status='unpaid',billeddate='$billdate',billedtime='$billtime',proc_status='$proc_status',reception='$name' where bill_id='$b_id' and visit_id='$visit_id'")or die(mysql_error());
 
     unset($_SESSION['p_id']);
     unset($_SESSION['bed_no']);
@@ -145,7 +147,7 @@ if(isset($_POST['newe']))
 
 }
 if(isset($_POST['print'])){
-    mysql_query("update opd_bill set grand_total='$sub_total',due_amount=0,paid_amount='$sub_total',status='paid',billeddate='$billdate',billedtime='$billtime',proc_status='$proc_status',reception='$uname' where bill_id='$b_id' and visit_id='$visit_id'")or die(mysql_error()." line no-86");
+    mysql_query("update opd_bill set grand_total='$sub_total',due_amount=0,paid_amount='$sub_total',status='paid',billeddate='$billdate',billedtime='$billtime',proc_status='$proc_status',reception='$name' where bill_id='$b_id' and visit_id='$visit_id'")or die(mysql_error()." line no-86");
 
     //echo $b_id=$_SESSION['b_id'];
     //echo '</br>';

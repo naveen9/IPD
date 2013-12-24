@@ -6,6 +6,7 @@ include('condb.php');
 //$p_id=$_SESSION['p_id'];
 //$v_id=$_SESSION['v_id'];
 $b_id=$_SESSION['b_id'];
+$proc_status=1;
 //echo $b_id;
 $p_name=$_SESSION['p_name'];
 $s_proc_id=$_SESSION['s_proc_id'];
@@ -50,7 +51,7 @@ if(isset($_POST['add']))
         
         $dom=$_SESSION['dom']=$dom;
 
-        mysql_query("insert into patient_medicine values ('','$p_id','$visit_id','$b_id','$dom','$p_name','$bed_no','$m_name','$batch_no','$mrp','$packs','$quantity','$exp_date','$tax','$total')")or die(mysql_error());
+        mysql_query("insert into patient_medicine values ('','$p_id','$visit_id','$b_id','$dom','$p_name','$bed_no','$m_name','$batch_no','$mrp','$packs','$quantity','$exp_date','$tax','$total','$billtime','$user')")or die(mysql_error());
 
 
 
