@@ -1,0 +1,63 @@
+@charset "utf-8";
+/* CSS Document */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+table {
+ width: 100%;
+  background-color: transparent;
+}
+th{ font-weight:600; font-size:13px;}
+th {
+  text-align:left;
+  padding:10px 0px;
+  border-bottom:1px solid lightgray ;
+  background:#AEB4C2;
+ }
+tr td {
+  text-align:left;
+  padding:10px 0px;
+  border-bottom:1px solid lightgray ;
+  
+  
+}
+.odd_bg{background:#6699cc; color:#FFFFFF}
+.odd_bg a{color:#FFFFFF;}
+.odd_bg a:hover{ text-decoration:underline}
+table a{ color:#0000FF; font-weight:400}
+.pad{ padding:10px 30px}
+
+.insurance_block{width:99%; margin:0 auto; display:block;}
+.insurance_type{float:left; width:30%; float:left; padding:0% 3% 0% 0%; border-bottom:1px solid lightgray; vertical-align:middle; height:40px; }
+.insurance_type span{float:left; width:30%; float:left; padding:3% 3% 0% 0%; vertical-align:middle; height:20px; }
+
+
+
+.doc_payment{background:#E6E6E6;  height:30px; padding-top:10px;}
+.doc_payment div{float:left; width:10.5%; margin:0% 1%; display:block;}
+.doc_payment div:first-child{ width:23%;}
+.doc_payment div input[type="text"]{ width:90%; margin:0 auto;}
+
+.doc_datafeed{background:#E6E6E6;  height:30px; padding-top:10px;}
+.doc_datafeed div{float:left; width:11%; margin:0% 1%; display:block;}
+.doc_datafeed div:first-child{ width:16%;}
+.doc_datafeed div input[type="text"]{ width:90%; margin:0 auto;}
+
+
+
+.query_block{width:99%; margin:0 auto; display:block;}
+.query_type{float:left; width:21%; padding:0% 3% 0% 0%; border-bottom:1px solid lightgray; vertical-align:middle; height:40px;}
+.query_type span{float:left; width:22%; float:left; margin:3% 3% 0% 0%; vertical-align:middle; height:20px; }
+
+.emp_clssifi{width:98%; float: left; border-bottom: 1px solid lightgray; padding: 5px 0.75%;}
+.emp_clssifi .tiny{ float: left; width: 6%; padding: 5px 0.75%;}
+.emp_clssifi .nam_e{ width: 18%; float: left; word-break:break-all; padding: 5px 0.75%; }
+.emp_clssifi .ph{ width: 8%; float: left; word-break:break-all; padding: 5px 0.75%;}
+.emp_clssifi .e_mail{ width:13%; float: left; word-break:break-all; padding: 5px 0.75%;}
+.emp_clssifi .d_desig{ width:12%; float: left; word-break:break-all; padding: 5px 0.75%;}
+.emp_clssifi .adres{ width:17.5%;  float: left; word-break:break-all; padding: 5px 0.75%;}
+.proce a{ color:purple; float:left; display:block; margin: 0px 30px; }
+.as{ height: 20px;}
+.as > a{ color:#FFF; margin:0px 40px; display:block; float: left;}

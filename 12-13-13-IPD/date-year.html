@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+
+
+  
+<script src="ajax-ui.js"></script>
+    <script type="text/javascript" src="jquery-ui-min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="jquey-ui.css">
+<script type="text/javascript">
+$(function() {
+    $('.date-picker').datepicker( {
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'MM yy',
+        onClose: function(dateText, inst) { 
+            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+            $(this).datepicker('setDate', new Date(year, month, 1));
+        }
+    });
+});
+</script>
+
+<style>
+.ui-datepicker-calendar {
+    display: none;
+    }
+</style>
+
+</head>
+
+<body>
+  <div class="f_l">
+        	<label for="startDate">Date :</label>
+			    <input name="startDate" id="startDate" class="date-picker" />
+        </div>
+		
+		
+		
+		<div id="opd_bill" style="height:23px; background:green"> 
+  		<div class="f_l m_r" style="background:red">Hospital Accounting</div> 
+        <div class="r_ht" style="background:red; margin-left:40px; width:750px;">
+        <div class="todate_w f_l">
+       	  <input type="radio" name="date" checked="checked" style="margin:6px 15px 0px 20px;" />
+        </div>
+        <div class="f_l">
+				<label for="startDate">Date :</label>
+			    <input name="startDate" id="startDate" class="date-picker" style=" border-radius:6px; height:20px; border:1px solid lightgray;" />
+		</div> 
+        <div class="todate_w f_l" style="margin-left:30px;"><input type="radio" name="date" style="margin:6px 15px 0px 0px;" /></div> 
+        <div class="f_l"><input type="date" /></div>
+        <div class="todate_w f_l" style="margin:0px 15px 0px 20px;">To</div>
+        <div class="" style="margin-right:5px;"><input type="date" />
+		<input type="button" value="Update" class="btn" /></div>
+        </div>
+   </div>
+      <div class="right_top bg_head" style="border-bottom:1px solid #FFF">
+       
+       <span style="margin-left:5px;">Beneficiary Name</span>
+            <span>
+            	<select id="select_size">
+                      <option value="volvo">......................</option>
+                      
+				</select>
+            </span>    
+        <span style="margin-left:440px;"><input type="text" name="search" placeholder="ID/Name/Ph/Email" /></span>
+                <span><input type="button" name="search" value="Search"  style="background:#0000B9; color:#FFF; padding:3px;  width:70px;" /></span>
+       </div>
+		<div class="cls"></div>
+</body>
+</html>

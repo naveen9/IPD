@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript" src="jquery-1.5.js"></script>
+<script>
+$(document).ready(function(){
+$("button").click(function(){
+	$("p").appendTo("rr");
+});
+});
+</script>
+<style type="text/css">
+	 .transaction{width:990px; margin:0 auto;}
+	 .transaction #field_name{background:#C1E0FF; color:#000000;  height:30px; padding:5px 0px; line-height:15px;}
+	 .transaction #field_name #head_lft{float:left;  display:block; width:76px; text-align:left; font-weight:600; font-size:12px; 	}	 
+	 .transaction #odd{background:#F7F7F7;  color:#000000;  height:30px; padding:5px 0px; line-height:15px;}
+	 .transaction #odd #head_lft{float:left;  display:block; width:76px; text-align:left;}	 
+	 .transaction #even{background:#ECF5FF;  color:#000000;  height:30px; padding:5px 0px; line-height:15px;}
+	 .transaction #even #head_lft{float:left;  display:block; width:76px; text-align:left;}	 	 	 
+
+</style>
+</head>
+
+<body>
+<div class="transaction">
+	<div id="field_name">
+    	<div id="head_lft">Bill No</div>
+        <div id="head_lft">Visit Id</div>
+        <div id="head_lft">Patient<br /> Name</div>
+        <div id="head_lft">Procedure</div>
+        <div id="head_lft">Amount</div>
+        <div id="head_lft">Doctor</div>
+        <div id="head_lft">total<br /> Amount</div>
+        <div id="head_lft">Due Amount</div>
+        <div id="head_lft">Discount</div>
+        <div id="head_lft">Paid <br />Amount</div>
+        <div id="head_lft">Payment<br /> Mode</div>
+        <div id="head_lft">Bill<br /> Date</div>
+        <div id="head_lft">Bill <br />Time</div>
+	 </div>
+    <div class="cls"></div>
+    <div id="odd">
+    	<div id="head_lft">120</div>
+        <div id="head_lft">561</div>
+        <div id="head_lft">Rabindra singh</div>
+        <div id="head_lft">medicine</div>
+        <div id="head_lft">600</div>
+        <div id="head_lft">Anuj singh</div>
+        <div id="head_lft">500</div>
+        <div id="head_lft">100</div>
+        <div id="head_lft">100</div>
+        <div id="head_lft">500</div>
+        <div id="head_lft">Cash</div>
+        <div id="head_lft">19/07/2013</div>
+        <div id="head_lft">04:30</div>
+	 </div>
+         <div class="cls"></div>
+     <div id="even">
+    	<div id="head_lft">120</div>
+        <div id="head_lft">561</div>
+        <div id="head_lft">Rabindra singh</div>
+        <div id="head_lft">medicine</div>
+        <div id="head_lft">600</div>
+        <div id="head_lft">Anuj singh</div>
+        <div id="head_lft">500</div>
+        <div id="head_lft">100</div>
+        <div id="head_lft">100</div>
+        <div id="head_lft">500</div>
+        <div id="head_lft">Cash</div>
+        <div id="head_lft">19/07/2013</div>
+        <div id="head_lft">04:30</div>
+	 </div>
+</div>
+</body>
+</html>

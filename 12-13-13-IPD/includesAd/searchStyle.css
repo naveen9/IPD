@@ -1,0 +1,33 @@
+
+.suggestionsBoxAd{
+	position:relative;
+	left:0px;
+	margin:0px 0px 0px 0px;
+	width:400px;
+	
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+		color:#fff;
+		
+	}
+	.suggestionListAd{
+		margin:0px;
+		padding:0px;
+		position:absolute;
+		z-index:999;
+		background-color:#212427;
+		}	
+		
+		.suggestionListAd li
+		{
+		margin:0px 20px 13px 0px;
+		padding:3px;
+		cursor:pointer;	
+		float:left;
+		list-style:none;
+		}
+		.suggestionListAd  li:hover
+		{
+			background-color:#659CD8;	
+		}
+		

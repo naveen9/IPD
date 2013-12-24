@@ -1,0 +1,13 @@
+<?php
+include("head.php");
+include("menu.php");
+include("condb.php");
+
+if($_REQUEST['error_msg'])
+{
+$message=$_REQUEST['error_msg'];
+echo $message;
+}
+?>
+
+ <link rel="stylesheet" type="text/css" href="mystyle.css"/>
