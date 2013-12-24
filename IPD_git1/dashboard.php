@@ -177,10 +177,11 @@ $update2 = mysql_query("update visit_register set proc_status=0 where visit_id='
    <div id="tabs">
   <ul>
     <li><a href="#tabs-1">All bills</a></li>
+    <li><a href="#tabs-5">My duty</a></li> 
     <li><a href="#tabs-6">My bills</a></li> 
     <li><a href="#tabs-2">My Receipts</a></li>
     <li><a href="#tabs-3">Cancelled Bills</a></li>
-    <li><a href="#tabs-5">My duty</a></li>  
+     
     <li><a href="#tabs-4">My Account</a></li>
 	   
   </ul>
