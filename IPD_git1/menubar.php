@@ -5,7 +5,7 @@ session_start();
 <div class="cls"></div>
 <div id="menuu">
    <ul id="coolMenu1">
-	    <li><a href="dashboard.php">Dashboard</a></li>
+       <li><a href="dashboard_new1.php">Dashboard</a></li>
             
             
             <li><a href="#">Reception</a>
