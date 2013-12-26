@@ -3,6 +3,7 @@ session_start();
 require 'condb.php';
 error_reporting(0);
 $uid=$_SESSION['uid'];
+$uname=$_SESSION['uname'];
 
 if(empty($uid))
 {
@@ -276,8 +277,8 @@ $update2 = mysql_query("update visit_register set proc_status=0 where visit_id='
      
         <form>
          	<div class="bill_clr">
-			    <div class="l_ft bill_width"><span>Receipt ID</span></div>
-                <div class="l_ft bill_width"><span>Visit ID</span></div>
+			    <div class="l_ft bill_width"><span>Bill ID</span></div>
+                <div class="l_ft bill_width"><span>IP ID</span></div>
               <div class="l_ft bill_width_receive"><span>Total</span></div>
                 <div class="l_ft bill_width_receive"><span>Received Amount</span></div>
                 <div class="l_ft bill_width_receive"><span>Due Amount</span></div>
@@ -286,41 +287,58 @@ $update2 = mysql_query("update visit_register set proc_status=0 where visit_id='
 	        </div>
 
 	  <div class="bill_height" style="width:800px;">
-            <?php
+          
+            
+            <?php $max=mysql_query("select max(duty_id) from duty_roster");
+			             $mx=mysql_fetch_row($max);
+			                 $maxiId=$mx[0]; ?>
+				<?php $dutyTime=mysql_query("select * from  duty_roster where duty_id='$maxiId'");
+				$dutyTime=mysql_fetch_array($dutyTime);
+				
+				$StartDate=$dutyTime['StartDate'];
+				$StartTime=$dutyTime['StartTime'];
+			$EndDate=$dutyTime['EndDate'];
+			$EndTime=$dutyTime['EndTime'];
+			
+            
+            
 
-			$res=mysql_query("select * from opd_recpt where recption_id='$r_id' and date between '$StartDate' and '$EndDate' and time between '$StartTime' and '$EndTime'");
+
+			$res=mysql_query("select * from opd_bill where reception='$uname' and paid_amount!=0 and paid_amount!='NULL'   and billeddate between '$StartDate' and '$EndDate' and billedtime between '$StartTime' and '$EndTime'");
+                       
 			 //$res=mysql_query("select * from opd_recpt where recption_id='$r_id'");
 	            $num_rows = mysql_num_rows($res);
 				 while($row=mysql_fetch_array($res))
 				{
-				   $visit_id=$row['visit_id'];
-				   $qr1="select paid_amount,grand_discount,grand_total from opd_bill where visit_id='$visit_id'";
-				   $res1=mysql_query($qr1);
-				   $row1=mysql_fetch_array($res1);
-				   $recieved=$row1['grand_discount']+$row1['paid_amount'];
-					$date=$row['date']; 
-					$time=$row['time']; 
-				?>
-				<?php if($num_rows%2==0){  ?>
+                                   
+//				   $visit_id=$row['visit_id'];
+//				   $qr1="select paid_amount,grand_discount,grand_total from opd_bill where visit_id='$visit_id'";
+//				   $res1=mysql_query($qr1);
+//				   $row1=mysql_fetch_array($res1);
+//				   $recieved=$row1['grand_discount']+$row1['paid_amount'];
+//					$date=$row['date']; 
+//					$time=$row['time']; 
+                                     
+				 if($num_rows%2==0){  ?>
 				<div style="background:white">
-			    <div class="l_ft bill_width_receive"><span><?php echo $row['recpt_id'];  ?></span></div>
+			    <div class="l_ft bill_width_receive"><span><?php echo $row['bill_id'];  ?></span></div>
                 <div class="l_ft bill_width_receive"><span><?php echo $row['visit_id']; ?></span></div>
-                <div class="l_ft bill_width_receive"><span><?php echo $row1['grand_total']; ?></span></div>
-                <div class="l_ft bill_width_receive"><span><?php echo $recieved; ?></span></div>
-                <div class="l_ft bill_width_receive"><span><?php echo $row['new_due_amnt']; ?></span></div>
-                  <div class="l_ft bill_width_receive"><span></span><?php echo $row['date']; ?></div>
+                <div class="l_ft bill_width_receive"><span><?php echo $row['grand_total']; ?></span></div>
+                <div class="l_ft bill_width_receive"><span><?php echo $row['paid_amount']; ?></span></div>
+                <div class="l_ft bill_width_receive"><span><?php echo $row['due_amount']; ?></span></div>
+                  <div class="l_ft bill_width_receive"><span></span><?php echo $row['billeddate']; ?></div>
                <!--  <div class="l_ft bill_width_receive"><span><a href="print.php?r_id=<?php echo $row['recpt_id'];?>&&visit_id=<?php echo $row['visit_id']; ?>" style="color:blue">Print</a></span></div>-->
                  <div class="cls"></div>
 				 </div>
 				  
 				 <?php } else{  ?>
 				 <div style="background:gray;">
-				  <div class="l_ft bill_width_receive"><span><?php echo $row['recpt_id'];  ?></span></div>
+				  <div class="l_ft bill_width_receive"><span><?php echo $row['bill_id'];  ?></span></div>
                 <div class="l_ft bill_width_receive"><span><?php echo $row['visit_id']; ?></span></div>
                 <div class="l_ft bill_width_receive"><span><?php echo $row1['grand_total']; ?></span></div>
-                <div class="l_ft bill_width_receive"><span><?php echo $recieved; ?></span></div>
-                <div class="l_ft bill_width_receive"><span><?php echo $row['new_due_amnt']; ?></span></div>
-                  <div class="l_ft bill_width_receive"><span></span><?php echo $row['date']; ?></div>
+                <div class="l_ft bill_width_receive"><span><?php echo $row['paid_amount']; ?></span></div>
+                <div class="l_ft bill_width_receive"><span><?php echo $row['due_amount']; ?></span></div>
+                  <div class="l_ft bill_width_receive"><span></span><?php echo $row['billeddate']; ?></div>
 				  <div class="cls"></div>
 				 </div>
 				 <?php	 } $num_rows--; ?>
