@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2013 at 11:12 AM
+-- Generation Time: Dec 26, 2013 at 07:21 AM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -233,7 +233,25 @@ CREATE TABLE IF NOT EXISTS `df_pages` (
   `name` varchar(55) NOT NULL,
   `link` varchar(55) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `df_pages`
+--
+
+INSERT INTO `df_pages` (`id`, `name`, `link`) VALUES
+(1, 'Dashboard', 'dashboard.php'),
+(2, 'Reception', 'ipd_visit.php'),
+(3, 'IPD', 'visit_proc.php'),
+(4, 'Pharmacy', 'medicine_list.php'),
+(5, 'Diagnostics', 'create_lab_report.php'),
+(6, 'Inventory', 'main_store.php'),
+(7, 'Accounting', 'settle-visit.php'),
+(8, 'Data Mx', 'doctors-list.php'),
+(9, 'MIS', 'op-list.php'),
+(10, 'Hosp_admin', 'hospital_register.php'),
+(11, 'Med Record', '#'),
+(12, 'Claims', 'patient-details.php');
 
 -- --------------------------------------------------------
 
@@ -393,7 +411,7 @@ CREATE TABLE IF NOT EXISTS `duty_roster` (
   `EndTime` time NOT NULL,
   `Status` tinyint(20) NOT NULL,
   PRIMARY KEY (`duty_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `duty_roster`
@@ -401,7 +419,9 @@ CREATE TABLE IF NOT EXISTS `duty_roster` (
 
 INSERT INTO `duty_roster` (`duty_id`, `StartDate`, `StartTime`, `EndDate`, `EndTime`, `Status`) VALUES
 (2, '2013-12-20', '08:00:00', '2013-12-23', '21:00:00', 1),
-(3, '2013-12-24', '08:00:00', '2013-12-24', '20:00:00', 0);
+(3, '2013-12-24', '08:00:00', '2013-12-24', '20:00:00', 1),
+(4, '2013-12-22', '08:00:00', '2013-12-26', '21:00:00', 1),
+(5, '2013-12-20', '01:00:00', '2013-12-25', '17:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -672,7 +692,7 @@ CREATE TABLE IF NOT EXISTS `medicine_store` (
 --
 
 INSERT INTO `medicine_store` (`m_id`, `m_name`, `batch_no`, `mrp`, `unit_mrp`, `pack`, `quantity`, `expiry_date`) VALUES
-(2, 'parecenamol', 'ddrdhgvf2145gh', 40, 4, 10, 361, '12-2016');
+(2, 'parecenamol', 'ddrdhgvf2145gh', 40, 4, 10, 356, '12-2016');
 
 -- --------------------------------------------------------
 
@@ -752,7 +772,7 @@ CREATE TABLE IF NOT EXISTS `opd_bill` (
   `reception` varchar(40) NOT NULL,
   PRIMARY KEY (`bill_id`),
   KEY `FK_opd_bill_1` (`visit_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=108 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=109 ;
 
 --
 -- Dumping data for table `opd_bill`
@@ -762,7 +782,7 @@ INSERT INTO `opd_bill` (`bill_id`, `grand_total`, `due_amount`, `paid_amount`, `
 (1, NULL, -2000, 2000, '', 'unpaid', 'cash', '', NULL, 0, '2013-12-11', '14:10:30', 1, 1, 'sheena'),
 (5, NULL, -2000, 2000, '', 'unpaid', 'cash', '', NULL, 0, '2013-12-21', '06:27:57', 2, 1, 'sheena'),
 (6, NULL, -11400, 11400, '', 'unpaid', 'cash', '', NULL, 0, '2013-12-21', '06:30:59', 3, 1, 'sheena'),
-(8, NULL, -20000, 20000, '', 'unpaid', 'cash', '', NULL, 0, '2013-12-20', '07:20:43', 4, 1, 'sheena'),
+(8, NULL, -20000, 20000, '', 'unpaid', 'cash', '', NULL, 0, '2013-12-18', '07:20:43', 4, 1, 'sheena'),
 (9, NULL, -11400, 11400, '', 'unpaid', 'cash', '', NULL, 0, '2013-12-22', '07:21:49', 5, 1, 'sheena'),
 (10, NULL, -20000, 20000, '', 'unpaid', 'cash', '', NULL, 0, '2013-12-21', '07:22:54', 6, 1, 'sheena'),
 (98, 5000, 5000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 6, 1, 'sheena'),
@@ -774,7 +794,8 @@ INSERT INTO `opd_bill` (`bill_id`, `grand_total`, `due_amount`, `paid_amount`, `
 (104, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 6, 1, ''),
 (105, 20, 20, NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, '2013-12-24', '15:11:33', 3, 0, ''),
 (106, 16, 0, 16, NULL, 'paid', NULL, NULL, NULL, NULL, '2013-12-24', '15:13:43', 4, 0, ''),
-(107, 2200, 2200, NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, '2013-12-24', '15:24:12', 4, 1, 'sheena');
+(107, 2200, 2200, NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, '2013-12-24', '15:24:12', 4, 1, 'sheena'),
+(108, 20, 20, NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, '2013-12-24', '16:41:49', 3, 1, 'sheena');
 
 -- --------------------------------------------------------
 
@@ -1103,7 +1124,7 @@ CREATE TABLE IF NOT EXISTS `patient_medicine` (
   `bill_time` varchar(200) NOT NULL,
   `reception` varchar(200) NOT NULL,
   PRIMARY KEY (`m_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `patient_medicine`
@@ -1115,7 +1136,8 @@ INSERT INTO `patient_medicine` (`m_id`, `p_id`, `v_id`, `bill_id`, `dom`, `p_nam
 (3, 3, 3, 101, '2013-12-22', 'reena ray', 0, 'parecenamol', 'ddrdhgvf2145gh', 4, 0, 10, '12-2016', 0, 40, '', ''),
 (4, 6, 6, 104, '2013-12-25', 'uttra', 0, 'parecenamol', 'ddrdhgvf2145gh', 4, 0, 20, '12-2016', 0, 80, '', ''),
 (5, 3, 3, 105, '2013-12-25', 'reena ray', 0, 'parecenamol', 'ddrdhgvf2145gh', 4, 0, 5, '12-2016', 0, 20, '', ''),
-(6, 4, 4, 106, '2013-12-24', 'rajveer', 0, 'parecenamol', 'ddrdhgvf2145gh', 4, 0, 4, '12-2016', 0, 16, '', '');
+(6, 4, 4, 106, '2013-12-24', 'rajveer', 0, 'parecenamol', 'ddrdhgvf2145gh', 4, 0, 4, '12-2016', 0, 16, '', ''),
+(7, 3, 3, 108, '2013-12-24', 'reena ray', 0, 'parecenamol', 'ddrdhgvf2145gh', 4, 0, 5, '12-2016', 0, 20, '16:41:46', 'sheena');
 
 -- --------------------------------------------------------
 
