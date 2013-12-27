@@ -33,7 +33,7 @@ include("menubar.php");
 <div class="miscel_charge" style="height:20px; margin-bottom:2px; color:#FFF;"> Add New Procedure</div>    
 <form method="post">
     <div style="width:100%; margin:0 auto;">
-    <div style="width:25%; float:left"><strong>Procedure Name </strong></div>
+    <div style="width:25%; float:left"><strong>Procedure Name And Code</strong></div>
     <div style="width:25%; float:left"><strong>Procedure Type </strong></div>
     <div style="width:25%; float:left"><strong>Panel </strong></div>
     <div style="width:25%; float:left">&nbsp;&nbsp;</div>

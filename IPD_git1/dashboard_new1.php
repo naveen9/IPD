@@ -196,52 +196,216 @@ $update2 = mysql_query("update visit_register set proc_status=0 where visit_id='
        
           <div id="tabs-1">
    
-     
-   
+     <?php
+    $uid=$_SESSION['uid'];
+         $maxid1=mysql_query("select MAX(`duty_id`) from duty_roster where user_id='$uid'");
+         $rtr=  mysql_fetch_array($maxid1);
+        echo  $rmx=$rtr[0];
+        $sql=  mysql_query("select * from duty_roster where duty_id='$rmx' AND user_id='$uid'")or die(mysql_error());
+        $fetch=  mysql_fetch_array($sql);
+        #$sdate= $fetch['StartDate'];
+        #$stime= $fetch['StartTime'];
+        $edate= $fetch['EndDate'];
+        #$etime= $fetch['EndTime'];
+$last_month = date('Y-m-d', strtotime($edate . " - 30 day"));
+$last_month;
+     ?>
+
 
         <form action="#" method="post">
          <div class="bill_clr">
-			    <div class="l_ft dash_width"><span>VisitID</span></div>
-				<div class="l_ft pro_name"><span>Patient</span></div>
+			    <div class="l_ft dash_width"><span>Procedure Id</span></div>
+				<div class="l_ft pro_name"><span>Procedure name</span></div>
+                <div class="l_ft dash_width"><span>Amount</span></div>
                 <div class="l_ft dash_width"><span>Bill Id</span></div>
-                <div class="l_ft dash_width"><span>Bill Amount</span></div>
-                <div class="l_ft dash_width"><span>Due</span></div>
-                <!--<div class="l_ft dash_width"><span>Proc ID</span></div>-->
+                <div class="l_ft dash_width"><span>Ip ID</span></div>
+                <div class="l_ft dash_width"><span>Patient name</span></div>
                 <!--<div class="l_ft dash_width"><span>Proc Name</span></div>-->
                <!-- <div class="l_ft dash_width"><span>Proc Amount</span></div>-->
                 <div class="l_ft dash_width ali_gnment"><span>Cancel</span></div>
         </div>
         
         <div class="bill_height"> 
-		<?php  
-		 // start bills tab 
-		$res=mysql_query("SELECT * FROM opd_bill,patient_info,visit_register where opd_bill.visit_id=visit_register.v_id and 
-		visit_register.p_id=patient_info.patient.id where proc_status=1 order by bill_id desc"); 
-		while($row=mysql_fetch_array($res)){
-		?>
+		
+            
+            
+<!-----------------OT OPD ITEM TABLE START------------------------>
+
+
+            <?php  
+$mysql=  mysql_query("select * from opd_items where (date BETWEEN '$last_month' AND '$edate') AND reception='$uname'");
+
+while($row=  mysql_fetch_array($mysql))
+{
+                    
+                    ?>
 	  <?php if($i%2==0){  ?>
-                <div class="l_ft dash_width"><?php echo $row['visit_id'];?></div>
-                <div class="l_ft pro_name"><?php echo $row['p_name'];?></div>
+                <div class="l_ft dash_width"><?php echo $row['proc_id'];?></div>
+                <div class="l_ft pro_name"><?php echo $row['proc_name'];?></div>
+                <div class="l_ft dash_width"><?php echo $row['amount']; ?></div>
                 <div class="l_ft dash_width"><?php echo $row['bill_id']; ?></div>
-                <div class="l_ft dash_width"><?php echo $row['paid_amount']; ?></div>
-                <div class="l_ft dash_width"><?php echo $row['due_amount']; ?> </div>
-                <div class="l_ft dash_width ali_gnment"><span><a href="dashboard.php?proc_id=<?php echo $proc_id;?>&&visit=<?php echo $visitId; ?>&&patient_id=<?php echo $row1; ?>&&bill_id=<?php echo  $row['bill_id']; ?>" style="color:blue" onclick="return confirm('are u sure want to delete?');">Cancel</a></span></div>
+                <div class="l_ft dash_width"><?php echo $row['visit_id']; ?> </div>
+                        <div class="l_ft dash_width ali_gnment"><span>
+                    
+                                
+                                <?php $v=$row['visit_id'];
+        $my=  mysql_query("select p_id from visit_register where visit_id='$v'")or die(mysql_error());
+        $sql=  mysql_fetch_array($my);
+        $p_id=$sql['p_id'];
+        $data=  mysql_query("select p_name from patient_info where patient_id='$p_id'")or die(mysql_error());
+        
+        $ary_data=  mysql_fetch_array($data);
+        echo $ary_data['p_name']; ?>
+                                
+                    </span></div>
+                <div class="l_ft dash_width ali_gnment"><span>Cancel</span></div>
                 <div class="cls"></div>
 <?php } else{?>
-                <div class="l_ft dash_width" style="background:gray;"><?php echo $row['visit_id'];?></div>
-                <div class="l_ft pro_name" style=" background:gray;"><?php echo $row['p_name'];?></div>
+                <div class="l_ft dash_width" style="background:gray;"><?php echo $row['proc_id'];?></div>
+                <div class="l_ft pro_name" style=" background:gray;"><?php echo $row['proc_name'];?></div>
+                <div class="l_ft dash_width" style=" background:gray;"><?php echo $row['amount']; ?></div>
                 <div class="l_ft dash_width" style=" background:gray;"><?php echo $row['bill_id']; ?></div>
-                <div class="l_ft dash_width" style=" background:gray;"><?php echo $row['paid_amount']; ?></div>
-                <div class="l_ft dash_width" style=" background:gray;"><?php echo $row['due_amount']; ?> </div>
-                <div class="l_ft dash_width ali_gnment"><span><a href="dashboard.php?proc_id=<?php echo $proc_id;?>&&visit=<?php echo $visitId; ?>&&patient_id=<?php echo $row1; ?>&&bill_id=<?php echo  $row['bill_id']; ?>" style="color:blue" onclick="return confirm('are u sure want to delete?');">Cancel</a></span></div>
+                <div class="l_ft dash_width" style=" background:gray;"><?php echo $row['visit_id']; ?> </div>
+                <div class="l_ft dash_width ali_gnment" style=" background:gray;" ><span><?php $v=$row['visit_id'];
+        $my=  mysql_query("select p_id from visit_register where visit_id='$v'")or die(mysql_error());
+        $sql=  mysql_fetch_array($my);
+        $p_id=$sql['p_id'];
+        $data=  mysql_query("select p_name from patient_info where patient_id='$p_id'")or die(mysql_error());
+        
+        $ary_data=  mysql_fetch_array($data);
+        echo $ary_data['p_name']; ?></span></div>
+                <div class="l_ft dash_width ali_gnment"><span>Cancel</span></div>
                 <div class="cls"></div>
 <?php }$i++;?>
 <?php } ?>
 	   <?php // end bills tab ?>
+        
+
+<!-----------------OT OPD ITEM TABLE END------------------------>
+
+
+
+
+
+
+
+
+<!-----------------OT BILLING TABLE START------------------------>
+
+		<?php  
+$mysql=  mysql_query("select * from ot_billing where (ot_billing_date BETWEEN '$last_month' AND '$edate') AND reception_name='$uname'");
+
+while($row=  mysql_fetch_array($mysql))
+{
+                    
+                    ?>
+	  <?php if($i%2==0){  ?>
+                <div class="l_ft dash_width" style=" background: tomato "><?php echo $row['ot_id'];?></div>
+                <div class="l_ft pro_name" style=" background: tomato "><?php echo $row['Procedure_name'];?></div>
+                <div class="l_ft dash_width" style=" background: tomato "><?php echo $row['Package']; ?></div>
+                <div class="l_ft dash_width" style=" background: tomato "><?php echo $row['bill_id']; ?></div>
+                <div class="l_ft dash_width" style=" background: tomato "><?php echo $row['visit_id']; ?> </div>
+                        <div class="l_ft dash_width ali_gnment" style=" background: tomato "><span>
+                    
+                                
+                                <?php $v=$row['visit_id'];
+        $my=  mysql_query("select p_id from visit_register where visit_id='$v'")or die(mysql_error());
+        $sql=  mysql_fetch_array($my);
+        $p_id=$sql['p_id'];
+        $data=  mysql_query("select p_name from patient_info where patient_id='$p_id'")or die(mysql_error());
+        
+        $ary_data=  mysql_fetch_array($data);
+        echo $ary_data['p_name']; ?>
+                                
+                    </span></div>
+                <div class="l_ft dash_width ali_gnment"><span>Cancel</span></div>
+                <div class="cls"></div>
+<?php } else{?>
+                <div class="l_ft dash_width" style="background: magenta;"><?php echo $row['ot_id'];?></div>
+                <div class="l_ft pro_name" style=" background:magenta;"><?php echo $row['Procedure_name'];?></div>
+                <div class="l_ft dash_width" style=" background:magenta;"><?php echo $row['Package']; ?></div>
+                <div class="l_ft dash_width" style=" background:magenta;"><?php echo $row['bill_id']; ?></div>
+                <div class="l_ft dash_width" style=" background:magenta;"><?php echo $row['visit_id']; ?> </div>
+                <div class="l_ft dash_width ali_gnment" style=" background:magenta;"><span><?php $v=$row['visit_id'];
+        $my=  mysql_query("select p_id from visit_register where visit_id='$v'")or die(mysql_error());
+        $sql=  mysql_fetch_array($my);
+        $p_id=$sql['p_id'];
+        $data=  mysql_query("select p_name from patient_info where patient_id='$p_id'")or die(mysql_error());
+        
+        $ary_data=  mysql_fetch_array($data);
+        echo $ary_data['p_name']; ?></span></div>
+                <div class="l_ft dash_width ali_gnment"><span>Cancel</span></div>
+                <div class="cls"></div>
+<?php }$i++;?>
+<?php } ?>
+	   <?php // end bills tab ?>
+        
+
+
+
+<!-----------------OT BILLING TABLE END------------------------>
+
+
+<!------------------------Patient medison TABLE START--------------------------->
+
+
+		<?php  
+$mysql=  mysql_query("select * from patient_medicine where (dom BETWEEN '$last_month' AND '$edate') AND reception='$uname'");
+
+while($row=  mysql_fetch_array($mysql))
+{
+                    
+                    ?>
+	  <?php if($i%2==0){  ?>
+                <div class="l_ft dash_width" style=" background: seagreen "><?php echo $row['m_id'];?></div>
+                <div class="l_ft pro_name" style=" background: seagreen"><?php echo $row['m_name'];?></div>
+                <div class="l_ft dash_width" style=" background: seagreen "><?php echo $row['sub_total']; ?></div>
+                <div class="l_ft dash_width" style=" background: seagreen "><?php echo $row['bill_id']; ?></div>
+                <div class="l_ft dash_width" style=" background: seagreen "><?php echo $row['v_id']; ?> </div>
+                        <div class="l_ft dash_width ali_gnment" style=" background: seagreen "><span>
+                    
+                                
+                                <?php echo $row['p_name']; ?>
+                                
+                    </span></div>
+                <div class="l_ft dash_width ali_gnment"><span>Cancel</span></div>
+                <div class="cls"></div>
+<?php } else{?>
+                <div class="l_ft dash_width" style="background: springgreen;"><?php echo $row['m_id'];?></div>
+                <div class="l_ft pro_name" style=" background:springgreen;"><?php echo $row['m_name'];?></div>
+                <div class="l_ft dash_width" style=" background:springgreen;"><?php echo $row['sub_total']; ?></div>
+                <div class="l_ft dash_width" style=" background:springgreen;"><?php echo $row['bill_id']; ?></div>
+                <div class="l_ft dash_width" style=" background:springgreen;"><?php echo $row['v_id']; ?> </div>
+                <div class="l_ft dash_width ali_gnment" style=" background: springgreen; "><span><?php echo $row['p_name']; ?></span></div>
+                <div class="l_ft dash_width ali_gnment"><span>Cancel</span></div>
+                <div class="cls"></div>
+<?php }$i++;?>
+<?php } ?>
+	   <?php // end bills tab ?>
+        
+
+<!------------------------Patient medison TABLE END--------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
+            
+        
+
         
         </form>
-      </div>
+              
+          </div>
       
         <?php 
 		// start my reciept tab		
@@ -657,7 +821,7 @@ $vendor=$_POST['vendor'];
 			 $EndTime=$_POST['EndTime'];
 			 $status=1;
 			//if($StartDate=="" or $StartTime=="" or $EndDate=="" or $EndTime==""){echo "plz fill all date/times";}
-			mysql_query("insert into duty_roster values('','$StartDate','$StartTime','$EndDate','$EndTime',$status)");
+			mysql_query("insert into duty_roster values('','$StartDate','$StartTime','$EndDate','$EndTime','$status','$uid')");
 			mysql_query("update duty_roster set Status=1");
 			}
 		    $max=mysql_query("select max(duty_id) from duty_roster");
@@ -741,7 +905,6 @@ $vendor=$_POST['vendor'];
              
         </form>
       </div>
-
         <?php   
        }
        ?>
@@ -752,83 +915,21 @@ $vendor=$_POST['vendor'];
        ?>
        <div id="tabs-6">
 	<?php  
-	  $uname= $_SESSION['uname'];
-	  $_SESSION['StartDate']=$StartDate;
-	$_SESSION['StartTime']=$StartTime;
-	$_SESSION['EndDate']=$EndDate;
-	$_SESSION['EndTime']=$EndTime;
- 
+	 $uid=$_SESSION['uid'];
+         $maxid1=mysql_query("select MAX(`duty_id`) from duty_roster where user_id='$uid'");
+         $rtr=  mysql_fetch_array($maxid1);
+        echo  $rmx=$rtr[0];
+        $sql=  mysql_query("select * from duty_roster where duty_id='$rmx' AND user_id='$uid'")or die(mysql_error());
+        $fetch=  mysql_fetch_array($sql);
+        $sdate= $fetch['StartDate'];
+        $stime= $fetch['StartTime'];
+        $edate= $fetch['EndDate'];
+        $etime= $fetch['EndTime'];
+#$last_month = date('Y-m-d', strtotime($sdate . " - 30 day"));
+#$last_month;
+     
 
-    //Select data from 4 tables 1(opd_bill)[B] 2(visit_register)[V] 3(opd_items)[I] 4(patient_info)[P]
-    //Where receptionist = selected  user
-    //And opd_bill 's visit id matched with visit register's visit id
-    //And visit register 's visit id matched with patient 's patient id
-    //Group by bill_id for remove duplicate results
-    $biquery=mysql_query("SELECT B.bill_id,B.visit_id,B.reception,B.grand_total,
-                        V.visit_id, V.p_id,
-                        P.patient_id, P.p_name,
-                        I.proc_name, I.doc_incharge,I.proc_id,I.amount,
-                        B.grand_discount, B.due_amount,
-                        B.paid_amount, B.payment_mode,
-                        B.grand_discount, B.billeddate ,B.billedtime
-                        FROM opd_bill B, visit_register V, opd_items I, patient_info p
-                        WHERE B.reception='$uname'
-                        AND B.visit_id=V.visit_id
-                        AND V.p_id=P.patient_id
-                        AND I.bill_id=B.bill_id AND B.billeddate between '$StartDate' and '$EndDate' and B.billedtime between '$StartTime' and '$EndTime'
-                        group by I.proc_id")or die(mysql_error());
-			
-			
-$sumcash=0;
-$sumCredit_card=0;
-$sumDebit_card=0;
-$sumCheque_draft=0;						
-						
-						
-   //CASH
-    $sum=mysql_query("SELECT  SUM(paid_amount) FROM opd_bill WHERE reception='$uname' AND payment_mode='cash'
-AND billeddate between '$StartDate' and '$EndDate' and billedtime between '$StartTime' and '$EndTime'")or die(mysql_error());
-    $sumCash=mysql_fetch_array($sum);
-	$sumCash=$sumCash[0];
-  //  echo "<h2>Total Earning In Cash :- $sumamount[0]</h2>";
-    //echo '<br/>';
-//CREDIT
-$sum=mysql_query("SELECT  SUM(paid_amount) FROM opd_bill WHERE reception='$uname' AND payment_mode='credit_card' 
-AND billeddate between '$StartDate' and '$EndDate' and billedtime between '$StartTime' and '$EndTime' ")or die(mysql_error());
-$sumCredit=mysql_fetch_array($sum);
-$sumCredit_card=$sumCredit[0];
-//echo "<h2>Total Earning In Credit :- $sumamount[0]</h2>";
-//echo '<br/>';
-//DEBIT
-$sum=mysql_query("SELECT  SUM(paid_amount) FROM opd_bill WHERE reception='$uname' AND payment_mode='debit_card'
-AND billeddate between '$StartDate' and '$EndDate' and billedtime between '$StartTime' and '$EndTime' ")or die(mysql_error());
-$sumDebit=mysql_fetch_array($sum);
-$sumDebit_card=$sumDebit[0];
-//echo "<h2>Total Earning In Debit :- $sumamount[0]</h2>";
-//echo '<br/>';
-//DRAFT
-$sum=mysql_query("SELECT  SUM(paid_amount) FROM opd_bill WHERE reception='$uname' AND payment_mode='cheque_draft'  
- AND billeddate between '$StartDate' and '$EndDate' and billedtime between '$StartTime' and '$EndTime'")or die(mysql_error());
-$sumCheque=mysql_fetch_array($sum);
-$sumCheque_draft=$sumCheque[0];
-//echo "<h2>Total Earning In Cheque :- $sumamount[0]</h2>";
-//echo '<br/>';
-if(!$sumCash){
-$sumCash=0;
-}
-if(!$sumCredit_card)
-{
-$sumCredit_card=0;
-}
-if(!$sumDebit_card)
-{
-$sumDebit_card=0;
-}
-if(!$sumCheque_draft)
-{
-$sumCheque_draft=0;
-}
-	  
+
 	  ?>
 	  <div class="tot_earning">
 		  <div id="earning"><font color='green'>Total Earning In Cash</font> <font color="blue"><?php echo  $sumCash; ?></font></div>
@@ -840,67 +941,273 @@ $sumCheque_draft=0;
 	  <div class="cls"></div>
 		<div class="transaction">
 	<div id="field_name">
-    	<div id="head_lft">Bill<br> No</div>
-        <div id="head_lft">Visit<br> Id</div>
-        <div id="head_lftw">Patient<br /> Name</div>
-        <div id="head_lftw">Procedure</div>
-        <div id="head_lft">Amount</div>
-        <div id="head_lftw">Doctor</div>
-        <div id="head_lft">total</div>
-        <div id="head_lft">Due</div>
-        <div id="head_lft"  style="text-align:left">Discount</div>
-        <div id="head_lft"  style="text-align:center">Paid </div>
-        <div id="head_lft">Payment<br /> Mode</div>
-        <div id="head_lftw" style="text-align:center">Bill<br /> Date</div>
-        <div id="head_lftw">Bill Time</div>
+            <div id="head_lft" style="float:left; width: 100px; ">Procedure Id</div>
+        <div id="head_lft" style="float:left; width: 100px; ">Items</div>
+        <div id="head_lftw" style="float:left; width: 100px; ">Amount</div>
+        <div id="head_lftw" style="float:left; width: 100px; ">Bill Id</div>
+        <div id="head_lft" style="float:left; width: 100px; ">Ip ID</div>
+        <div id="head_lftw" style="float:left; width: 100px; ">Patient name</div>
+<!--        <div id="head_lft">&nbsp;</div>
+        <div id="head_lft">&nbsp;</div>
+        <div id="head_lft"  style="text-align:left">&nbsp;</div>
+        <div id="head_lft"  style="text-align:center">&nbsp;</div>
+        <div id="head_lft">&nbsp;</div>
+        <div id="head_lftw" style="text-align:center">&nbsp;</div>
+        <div id="head_lftw">&nbsp;</div>-->
 	 </div>
-    <div class="cls"></div>
+    
+            <?php 
+$mysql=  mysql_query("select * from opd_items where (date BETWEEN '$sdate' AND '$edate') AND reception='$uname'");
+
+while($ftch=  mysql_fetch_array($mysql))
+{
+
+?>
+                    <div class="cls"></div>
     <div id="even">
 	<form method="post" action="print_dashboard.php">
-	<?php  
-	// calculate num of rows returned through query 
- $num_rowsT=mysql_num_rows($biquery);	
- // check wheather row is even or odd
-while($data=mysql_fetch_array($biquery)){
-	 if($num_rowsT%2==0){ 
-?>
-    	<div id="head_lft"><?php echo $data['bill_id'];?></div>
-        <div id="head_lft"><?php echo $data['visit_id'];?></div>
-        <div id="head_lftw"><?php echo $data['p_name'];?></div>
-        <div id="head_lftw"><?php echo $data['proc_name'];?></div>
-        <div id="head_lft"><?php echo $data['amount'];?></div>
-        <div id="head_lftw"><?php echo $data['doc_incharge'];?></div>
-        <div id="head_lft"><?php echo $data['grand_total'];?></div>
-        <div id="head_lft"><?php echo $data['due_amount'];?></div>
-        <div id="head_lft"><?php echo $data['grand_discount'];?></div>
-        <div id="head_lft"><?php echo $data['paid_amount'];?></div>
-        <div id="head_lft"><?php echo $data['payment_mode'];?></div>
-        <div id="head_lftw"><?php echo $data['billeddate'];?></div>
-        <div id="head_lftw"><?php echo $data['billedtime'];?></div>
-		<?php }
-		else { ?>
-		<div id="head_lft" style="background:gray"><?php echo $data['bill_id'];?></div>
-        <div id="head_lft" style="background:gray"><?php echo $data['visit_id'];?></div>
-        <div id="head_lftw" style="background:gray"><?php echo $data['p_name'];?></div>
-        <div id="head_lftw" style="background:gray"><?php echo $data['proc_name'];?></div>
-        <div id="head_lft" style="background:gray"><?php echo $data['amount'];?></div>
-        <div id="head_lftw" style="background:gray"><?php echo $data['doc_incharge'];?></div>
-        <div id="head_lft" style="background:gray"><?php echo $data['grand_total'];?></div>
-        <div id="head_lft" style="background:gray"><?php echo $data['due_amount'];?></div>
-        <div id="head_lft" style="background:gray"><?php echo $data['grand_discount'];?></div>
-        <div id="head_lft" style="background:gray"><?php echo $data['paid_amount'];?></div>
-        <div id="head_lft" style="background:gray"><?php echo $data['payment_mode'];?></div>
-        <div id="head_lftw" style="background:gray"><?php echo $data['billeddate'];?></div>
-        <div id="head_lftw" style="background:gray"><?php echo $data['billedtime'];?></div>	
-		<?php
-		// end else 
-		} ?>
-		<?php $num_rowsT--;}?>
-	 </div>
-	 <input type="submit" name="print" class="btn" value="Print Page">
+<?php
+            if($i%2==0)
+            {
+    ?>
+                <div id="head_lft" style="float:left; width: 100px; "><?php echo $ftch['proc_id']; ?></div>
+            
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['proc_name']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['amount']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['bill_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['visit_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php 
+        $v=$ftch['visit_id'];
+        $my=  mysql_query("select p_id from visit_register where visit_id='$v'")or die(mysql_error());
+        $sql=  mysql_fetch_array($my);
+        $p_id=$sql['p_id'];
+        $data=  mysql_query("select p_name from patient_info where patient_id='$p_id'")or die(mysql_error());
+        
+        $ary_data=  mysql_fetch_array($data);
+        echo $ary_data['p_name'];
+        
+        ?></div>
+
+         	<input type="submit" name="del" class="btn" value="Delete">
+    </div>
+	
+            <?php 
+            }
+            else
+            {
+            ?>
+            
+            
+    	<div id="head_lft" style="float:left; width: 100px; background: lightblue;  "><?php echo $ftch['proc_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: lightblue; "><?php echo $ftch['proc_name']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: lightblue;"><?php echo $ftch['amount']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: lightblue;"><?php echo $ftch['bill_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: lightblue;"><?php echo $ftch['visit_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: lightblue;"><?php 
+        $v=$ftch['visit_id'];
+        $my=  mysql_query("select p_id from visit_register where visit_id='$v'")or die(mysql_error());
+        $sql=  mysql_fetch_array($my);
+        $p_id=$sql['p_id'];
+        $data=  mysql_query("select p_name from patient_info where patient_id='$p_id'")or die(mysql_error());
+        
+        $ary_data=  mysql_fetch_array($data);
+        echo $ary_data['p_name'];
+        
+        ?></div>
+
+         	<input type="submit" name="del" class="btn" value="Delete">
+            
+            <?php
+            } $i++; } ?>
+                    
+                    
 	 </form>
+        <!--        <div id="head_lft" style="float:left; width: 100px; ">sixain</div>-->
+<!--        <div id="head_lftw" style="float:left; width: 100px; ">sevenfold</div>-->
+<!--        <div id="head_lft"></div>
+        <div id="head_lft"></div>
+        <div id="head_lft"></div>
+        <div id="head_lft"></div>
+        <div id="head_lftw"></div>
+        <div id="head_lftw"></div>
+		
+        -->
+
          <div class="cls"></div>
      
+         <!-------------------START OT BILLING--------------->
+         
+         
+         
+           <?php 
+$mysql=  mysql_query("select * from ot_billing where (ot_billing_date BETWEEN '$sdate' AND '$edate') AND reception_name='$uname'");
+
+while($ftch=  mysql_fetch_array($mysql))
+{
+
+?>
+                    <div class="cls"></div>
+    <div id="even">
+	<form method="post" action="print_dashboard.php">
+<?php
+            if($i%2==0)
+            {
+    ?>
+                <div id="head_lft" style="float:left; width: 100px; background:tomato; "><?php echo $ftch['ot_id']; ?></div>
+            
+        <div id="head_lftw" style="float:left; width: 100px; background: tomato  "><?php echo $ftch['Procedure_name']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: tomato "><?php echo $ftch['Package']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: tomato "><?php echo $ftch['bill_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: tomato "><?php echo $ftch['visit_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: tomato "><?php 
+        $v=$ftch['visit_id'];
+        $my=  mysql_query("select p_id from visit_register where visit_id='$v'")or die(mysql_error());
+        $sql=  mysql_fetch_array($my);
+        $p_id=$sql['p_id'];
+        $data=  mysql_query("select p_name from patient_info where patient_id='$p_id'")or die(mysql_error());
+        
+        $ary_data=  mysql_fetch_array($data);
+        echo $ary_data['p_name'];
+        
+        ?></div>
+
+         	<input type="submit" name="del" class="btn" value="Delete">
+    </div>
+	
+            <?php 
+            }
+            else
+            {
+            ?>
+            
+            
+    	<div id="head_lft" style="float:left; width: 100px; background: palegreen;  "><?php echo $ftch['ot_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: palegreen; "><?php echo $ftch['Procedure_name']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: palegreen;"><?php echo $ftch['Package']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: palegreen;"><?php echo $ftch['bill_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: palegreen;"><?php echo $ftch['visit_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: palegreen;"><?php 
+        $v=$ftch['visit_id'];
+        $my=  mysql_query("select p_id from visit_register where visit_id='$v'")or die(mysql_error());
+        $sql=  mysql_fetch_array($my);
+        $p_id=$sql['p_id'];
+        $data=  mysql_query("select p_name from patient_info where patient_id='$p_id'")or die(mysql_error());
+        
+        $ary_data=  mysql_fetch_array($data);
+        echo $ary_data['p_name'];
+        
+        ?></div>
+
+         	<input type="submit" name="del" class="btn" value="Delete">
+            
+            <?php
+            } $i++; } ?>
+                    
+                    
+	 </form>
+        <!--        <div id="head_lft" style="float:left; width: 100px; ">sixain</div>-->
+<!--        <div id="head_lftw" style="float:left; width: 100px; ">sevenfold</div>-->
+<!--        <div id="head_lft"></div>
+        <div id="head_lft"></div>
+        <div id="head_lft"></div>
+        <div id="head_lft"></div>
+        <div id="head_lftw"></div>
+        <div id="head_lftw"></div>
+		
+        -->
+
+         <div class="cls"></div>
+         
+         
+         <!------------------END OT BILLING------------------->
+         
+         
+         
+         
+         
+         <!-------------------START PATIENT MEDICINE--------------->
+         
+         
+         
+           <?php 
+$mysql=  mysql_query("select * from patient_medicine where (dom BETWEEN '$sdate' AND '$edate') AND reception='$uname'");
+
+while($ftch=  mysql_fetch_array($mysql))
+{
+
+?>
+                    <div class="cls"></div>
+    <div id="even">
+	<form method="post" action="print_dashboard.php">
+<?php
+            if($i%2==0)
+            {
+    ?>
+                <div id="head_lft" style="float:left; width: 100px; background: yellow; "><?php echo $ftch['m_id']; ?></div>
+            
+        <div id="head_lftw" style="float:left; width: 100px; background: yellow  "><?php echo $ftch['m_name']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: yellow "><?php echo $ftch['sub_total']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: yellow"><?php echo $ftch['bill_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: yellow"><?php echo $ftch['v_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px;background: yellow; "><?php 
+        
+        echo $ftch['p_name'];
+        
+        ?></div>
+
+         	<input type="submit" name="del" class="btn" value="Delete">
+    </div>
+	
+            <?php 
+            }
+            else
+            {
+            ?>
+            
+            
+    	<div id="head_lft" style="float:left; width: 100px; background: blue;  "><?php echo $ftch['m_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: blue; "><?php echo $ftch['m_name']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: blue;"><?php echo $ftch['sub_total']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: blue;"><?php echo $ftch['bill_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: blue;"><?php echo $ftch['v_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; background: blue;"><?php 
+        echo $ftch['p_name'];
+        
+        ?></div>
+
+         	<input type="submit" name="del" class="btn" value="Delete">
+            
+            <?php
+            } $i++; } ?>
+                    
+                    
+	 </form>
+        <!--        <div id="head_lft" style="float:left; width: 100px; ">sixain</div>-->
+<!--        <div id="head_lftw" style="float:left; width: 100px; ">sevenfold</div>-->
+<!--        <div id="head_lft"></div>
+        <div id="head_lft"></div>
+        <div id="head_lft"></div>
+        <div id="head_lft"></div>
+        <div id="head_lftw"></div>
+        <div id="head_lftw"></div>
+		
+        -->
+
+         <div class="cls"></div>
+         
+         
+         <!------------------END PATIENT MEDICINE------------------->
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
 </div>
 			
 		</div>
