@@ -61,15 +61,15 @@ $time=date("H:i:s");
     display: none;
     }
 </style>
-        
-    <div style="width:100%; height:20px; padding:10px 0px; background:#CCC; font-weight:600">
-        <span class="p_adding">Room booking </span>
+     <div class="miscel_charge">        
+        <ul class="visit_sum" style="color:#FFFFFF; font-weight:600;">Room booking </ul>
+        <div class="cls"></div>
     </div>
       <form action="room_add.php" method="post">
-      <div style="width:100%; background:#91C8FF; height:20px; padding:5px 0px;">
+      <div style="width:100%; background:#CCC; height:20px; padding:5px 0px;">
 
             
-            <div style="float:left; width:200px; margin-right:5px;"><strong>Name</strong></div>
+            <div style="float:left; width:200px; margin-left:5px;"><strong>Name</strong></div>
             <div style="float:left; width:150px; margin-right:5px;"><strong>Room Category</strong></div>
           <div style="float:left; width:150px; margin-right:5px;"><strong>From Date</strong></div>
             <div style="float:left; width:180px; margin-right:5px;"><strong>Time</strong></div>
@@ -97,7 +97,7 @@ $time=date("H:i:s");
           <div style="float:left; width:150px; margin-right:5px;"><input type="date" name="date" value="" style="width:120px;" /></div>
           <div style="float:left; width:180px; margin-right:5px;"><input type="text" name="time" value="<?php echo $time; ?>" style="width:120px;"  /></div>
          
-          <div style="float:left; width:80px;  margin-left:2px;"><input type="submit" value="Add" name="add" class="btn" /></div>
+          <div style="float:left; width:80px;  margin-left:100px;"><input type="submit" value="  Add  " name="add" class="btn" /></div>
 
 
 
@@ -112,7 +112,7 @@ $time=date("H:i:s");
          <div class="cls"></div>
 
 
-           <div class="field_bg"  style="width:100%; background:#91C8FF; height:20px; padding:5px 0px;">
+           <div class="field_bg"  style="width:100%; background:#CCC; height:20px; padding:5px 0px;">
               <div style="float:left; width:100px; margin-right:5px;"><strong>S.No.</strong></div>
             <div style="float:left; width:150px; margin-right:5px;"><strong>Date</strong></div>
             <div style="float:left; width:200px; margin-right:5px;"><strong>Name</strong></div>

@@ -45,9 +45,16 @@ if($_REQUEST['error_msg1'])
 }
 
 ?>
+  
+     <div class="miscel_charge">        
+        <ul class="visit_sum" style="color:#FFFFFF; font-weight:600;">Patient Documents </ul>
+        <div class="cls"></div>
+    </div>
+
+
     <div class="record_feed">
         <div id="opd_bill" style="height:20px;">
-    <div style="float:left; padding-left:5px">Patient Documents</div>
+    <div style="float:left; padding-left:2px; font-weight:600;">Search Existing Patient</div>
     <div style="float:right; margin-top:-6px;">
         <form method="post" action="search_clin.php" autocomplete="off">
           <span><input type="text" name="search1" placeholder="Bed No" id="inputString" onKeyUp="lookup(this.value);" onBlur="fill();" style="width:60px;"/></span>
@@ -57,8 +64,7 @@ if($_REQUEST['error_msg1'])
    </div>   
 			<form method="post" action="search_clin.php" autocomplete="off">
 			<div id="search_exist">
-        	<div id="search_txt" class="p_adding">Search Existing Patient</div>
-            <div class="p_adding">
+        	  <div class="p_adding">
             	<span>
 					<input type="text" name="search" placeholder="pid/name/ph/email" id="inputStringAd" onKeyUp="lookupAd(this.value);"  /></span>
 					<span style="float:right; margin-top:5px;">
@@ -113,13 +119,13 @@ if($_REQUEST['error_msg1'])
 </form>
 <div class="cls"></div>
             <div style="background:#CCCCCC; padding:10px 0px; font-weight:700;">
-                <div style="float:left; width:150px; padding:0px 10px; text-align:right;">Bed No. : <span><label for> <?php echo $_SESSION['bed_no']; ?></label></span></div>
+                <div style="float:left; width:150px; padding:0px 10px; text-align:left;">Bed No. : <span><label for> <?php echo $_SESSION['bed_no']; ?></label></span></div>
             	<div style="float:left; width:300px; padding:0px 10px; text-align:right;">Patient ID : <span><label for> <?php echo $_SESSION['p_id']; ?></label></span></div>
             	<div style="float:right; width:200px; padding:0px 10px;">IP ID : <span><label for> <?php echo $_SESSION['v_id']; ?></label></span></div>
             	<div class="cls"></div>
             </div>
             
-            	<div style="background:lightgreen; padding:10px 0px; font-weight:700;">		
+            	<div style="background:#AEB4C2; padding:10px 0px; font-weight:700;">		
             	    <div style="float:left; width:185px; padding-left:10px;">Document Name</div>
                     <div style="float:left; width:185px; padding-left:10px;">Category</div>
                     <div style="float:left; width:185px; padding-left:10px;">Date</div>
@@ -130,11 +136,11 @@ if($_REQUEST['error_msg1'])
       	<div style="padding:10px 0px;">
 						<form method="post" enctype="multipart/form-data">
 						<div style="float:left; width:195px;">
-                <input type="text"  name="name"/>
+                <input type="text" style="height:15px;"  name="name"/>
             </div>
                     	
                     	<div class="l_ft"  style="width:195px;">
-                        <select name="email"  style="width:135px; padding:5px 0px">
+                        <select name="email"  style="width:165px; height:25px; padding:5px 0px">
                           <option value="category" selected> category</option>
                           
                           <option>Discharge Summary</option>
@@ -156,7 +162,7 @@ if($_REQUEST['error_msg1'])
                     </div>
            
 	                    
-	                    <div style="float:left; width:195px;"><input type="date" name="date"/></div>
+	                    <div style="float:left;  width:195px;"><input type="date" style="height:15px;" name="date"/></div>
 	                    <div style="float:left; width:195px;">
     	                    <input type="file"  id="myfile" name="myfile" style="width:135px;"/>
                       </div>
@@ -266,10 +272,10 @@ mysql_query("insert into mydocs VALUES('','$p_id','$v_id','$saved','$name','$ema
 <?php
 if ($count>$max)
 {
-	echo "You do not upload document more then 200";
+	echo "You can not upload document more then 200";
 }
 ?>
-<div style="background:lightgreen; padding:10px 0px; font-weight:700;">		
+<div style="background:#CCCCCC; padding:10px 0px; font-weight:700;">		
             	      <div style="float:left; width:250px; padding-left:10px;">Image</div>
                     <div style="float:left; width:200px; padding-left:10px;">File Name</div>
                     <div style="float:left; width:200px; padding-left:10px;">Category</div>

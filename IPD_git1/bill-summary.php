@@ -1,12 +1,32 @@
 <?php
-    session_start();
+session_start();
     error_reporting(0);
-    include("header.php"); 
-    include("menubar.php");
-    include("condb.php");
- 
-?>
+    //require 'includes1/searchresults.php';
+include("condb.php");
 
+
+$uid=$_SESSION['uid'];
+$user=$_SESSION['uname'];
+
+if(empty($uid))
+{
+    header('location:index.php');
+    exit();
+}
+$sql=  mysql_query("select inventory from user_priv where user_id='$uid' ")or die(mysql_error());
+$ft=  mysql_fetch_array($sql);
+$db=$ft['inventory'];
+if($db==0)
+{
+    echo 'You are not Authorized to access this page ';
+    exit();
+}
+
+    include("header.php");
+include("menubar.php");
+
+
+?>
 
 
 
@@ -14,6 +34,7 @@
 <?php
 $name=$_SESSION['uname'];
 //$name=admin;
+
 $v_id=$_SESSION['v_id'];
 //$v_id=110;
 date_default_timezone_set('Asia/Kolkata');

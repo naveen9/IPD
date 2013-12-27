@@ -40,7 +40,7 @@ $time=$_POST['time'];
 
     if(!empty($name) && !empty($date) && !empty($room_type)){
 $sql=mysql_query("INSERT INTO room_booking VALUES(' ','$name','$room_type','$date','$time')")or die(mysql_error());
-$msg="<h3>Room booking successfully</h3>";
+$msg="<h3>Room booking successful</h3>";
         $_SESSION['msg']=$msg;
 header('location: room_booking.php');
 
