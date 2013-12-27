@@ -274,9 +274,7 @@ echo "</tr>";
              <div style="margin-top:15px;">
                 <input type="radio" value="Free(Camp)" name="paymentmode" />&nbsp;&nbsp;&nbsp;<strong>Free(Camp)</strong>
             </div>
-            <div style="margin-top:15px;">
-                <input type="radio" value="0"  name="paymentmode" />&nbsp;&nbsp;&nbsp;<strong>None</strong>
-            </div>
+            
         </div>
 
         <div style="float:left; width:40%;  margin-left:50px;  padding:10px 0px 5px 10px;">

@@ -71,14 +71,21 @@ $q=mysql_query("select * from patient_info where patient_id='$p_id'")or die(mysq
                 $marital_status=$search_result['marital_status'];
               
 ?>
-      
+      <form method="post" action="search_demographics.php" autocomplete="off">
    <div id="opd_bill" style="height:20px;">
     <div style="float:left; padding-left:5px">Patient Demographics</div>
     <div style="float:right; margin-top:-6px;">
-          <span><input type="text" name="search1" placeholder="Bed No" id="inputString" onKeyUp="lookup(this.value);" onBlur="fill();" style="width:60px; padding:1px 5px"/></span>
-          <span><input type="submit" name="find1" value="Search" class="btn" style="width:100px;"/></span>
+          <div class="p_adding">
+                <span>
+            <input type="text" name="search" placeholder="PID/Name/Ph/Email" id="inputStringCo" onKeyUp=				                     "lookupCo(this.value);" onBlur="fillCo();"  /></span>
+                            <span><input type="submit" name="find" value="Search" class="btn"/></span>
+                        <div align="left" class="suggestionsBoxAd" id="suggestionsCo" style="display:none;">
+						<div align="left" class="suggestionListAd" id="autoSuggestionsListCo"></div>
+</div>
+            </div>
      </div>
    </div>   
+      </form>
       <div class="patient_demo">
   			<div class="demo_l">
             	<div class="header">
@@ -234,8 +241,52 @@ $q=mysql_query("select * from patient_info where patient_id='$p_id'")or die(mysq
          <div class="f_l">
               <div><textarea name="add" value="<?php echo $p_address;?>" placeholder="write Address....." style="height:90px; width:190px"></textarea></div>
          </div>
+       
 
     </div>
+          <div class="demo_r">
+        
+        <div class="f_l">
+               
+            <table>
+               <tr>
+                   <div></div>
+                   <td>Allergies :</td>
+                   <td>Diseases</td>
+                   <td>Photo</td>
+               </tr>
+               <tr>
+                   
+                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
+                   
+               </tr>
+               <tr>
+                   
+                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
+                   
+               </tr>
+               <tr>
+                   
+                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
+                   
+               </tr>
+               <tr>
+                   
+                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
+                   
+               </tr>
+            </table>
+
+        </div>
+        
+               
+         </div>
+        
+          
     
     <div class="cls"></div>
     
