@@ -31,7 +31,8 @@ if($js=='jsd')
 }
 ?>
 
-<h1 style="float: right;  "><a href="User_man.php">Set User Privileges </a></h1>
+<h2 style="float: left;  "><a href="User_man.php">Click here to Set Users Privileges</a></h2>
+<h4 style="float: right;  "><a href="log_out.php">LogOut</a></h4>
 
 <table border="1" bordercolor="teal" style="background-color:#293e6a; color: whitesmoke " width="100%"  cellpadding="3" cellspacing="3">
     

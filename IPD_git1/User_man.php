@@ -19,6 +19,8 @@ echo $session_id;
          
      ?>
 <h1 style="float: left;  "><a href="User_veri.php">Go back</a></h1>
+<h4 style="float: right;  "><a href="log_out.php">LogOut</a></h4>
+
 <hr>
 
 <center><h2 style="color:  tomato">User Privileges settings</h2></center>
