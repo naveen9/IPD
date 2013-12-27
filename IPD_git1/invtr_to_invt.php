@@ -1,8 +1,25 @@
 
 <?php
-ob_start();
 session_start();
-	error_reporting(0);
+error_reporting(0);
+require 'condb.php';
+
+
+$uid=$_SESSION['uid'];
+
+if(empty($uid))
+{
+    header('location:index.php');
+    exit();
+}
+$sql=  mysql_query("select pharmacy from user_priv where user_id='$uid' ")or die(mysql_error());
+$ft=  mysql_fetch_array($sql);
+$db=$ft['pharmacy'];
+if($db==0)
+{
+    echo 'You are not Authorized to access this page ';
+    exit();
+}
 	include("header.php");
 	include("menubar.php");
     include("condb.php");
@@ -57,8 +74,8 @@ $inventory_name=$_SESSION['inventory_name'];
              </div>
              <div class="l_ft"  style="width:180px;">
                         <select name="type"  style="width:165px; padding:5px 0px">
-                          <option value="category" selected> select </option>
                           
+                          <option>Main Store</option>
                           <option>OPD Store</option>
                           <option>OT Store</option>
                           <option>Miner ot Store</option>
@@ -86,13 +103,16 @@ if(isset($_POST['submit11']))
              {
               //echo 'naveen';
 
+              $Inventory_type=$_REQUEST['type'];
+              if($Inventory_type!='Main Store')
+      {
               $inventory_name=$_REQUEST['m_name'];
               $quantity1=$_REQUEST['quantity'];
-              $Inventory_type=$_REQUEST['type'];
+             
               $date=$_REQUEST['date'];
               $time=$_REQUEST['time'];
               $quantity2=$quantity-$quantity1;
-                 $in_id=$_SESSION['in_id'];
+                  $in_id=$_SESSION['in_id'];
                  $ot_id=$_SESSION['ot_id'];
                  $type=$_SESSION['type'];
                  $ex_date=$_SESSION['ex_date'];
@@ -123,6 +143,50 @@ if(isset($_POST['submit11']))
              }
 
     }
+            
+ else 
+    
+    {
+              $quantity1=$_REQUEST['quantity'];
+              $inventory_name=$_REQUEST['m_name'];
+              ;
+              $date=$_REQUEST['date'];
+              $time=$_REQUEST['time'];
+              $quantity2=$quantity-$quantity1;
+                 $in_id=$_SESSION['in_id'];
+                 $ot_id=$_SESSION['ot_id'];
+                 $type=$_SESSION['type'];
+                 $ex_date=$_SESSION['ex_date'];
+
+                 mysql_query("update ot_store set quantity=$quantity2 where ot_id='$ot_id'")or die(mysql_error());
+                
+                 $q=mysql_query("select in_id,quantity from inventory_store where in_id='$in_id' ");
+        $found=mysql_num_rows($q);
+        if($found==0)
+        {
+          
+          mysql_query("insert into  inventory_store (in_id,in_name,type,quantity,ex_date) VALUES('$in_id','$inventory_name','$type','$quantity1','$ex_date')")or die(mysql_error());
+
+
+                 header("location: main_store.php");
+             }
+             else
+             {
+
+              $search_value=mysql_fetch_array($q);
+             $in_id=$search_value['in_id'];
+              $quantity=$search_value['quantity'];
+              $quantity3=$quantity+$quantity1;
+
+
+              mysql_query("update inventory_store set quantity='$quantity3' where in_id='$in_id'")or die(mysql_error());
+              header("location: main_store.php");
+             }
+
+    }
+    
+             }
+      
 
 
 

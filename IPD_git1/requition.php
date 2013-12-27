@@ -53,13 +53,13 @@ include("menubar.php");
 
 		
     	<div id="search_exist">
-        	<div class="p_adding">
+        	<div id="search_txt" class="p_adding">Search Existing Patient</div>
+            <div class="p_adding">
             	<span>
-					<input type="text" name="search" placeholder="pid/name/ph/email" id="inputStringAd" onKeyUp="lookupAd(this.value);"  /></span>
-					<span style="float:right; margin-top:5px;">
-					<input type="submit" name="find" value="Search" class="btn"/></span>
-<div align="left" class="suggestionsBoxAd" id="suggestionsAd" style="display:none;" >
-				<div align="left" class="suggestionListAd" id="autoSuggestionsListAd">
+<input type="text" name="search" placeholder="PID/Name/Ph/Email" id="inputStringCo" onKeyUp="lookupCo(this.value);" onBlur="fillCo();"  /></span>
+                <span><input type="submit" name="find" value="Search" class="btn"/></span>
+						<div align="left" class="suggestionsBoxAd" id="suggestionsCo" style="display:none;">
+<div align="left" class="suggestionListAd" id="autoSuggestionsListCo">
 </div>
 </div>
             </div>
@@ -68,26 +68,65 @@ include("menubar.php");
 
 </form>
 		
-
-        <div id="add_new_patient">
-    	   	 <div>
+ <div id="add_new_patient">
+    	   	<div id="add_txt" style="float:left; width:300px;">&nbsp;</div>
+            <div id="add_txt"  style="float:right; width:160px;">
             	
-                     <strong>ID</strong>
- <?php echo $pid= $_SESSION['p_id'];?>
-                     <strong>Name</strong>
+            </div>
+            <div class="cls"></div>
+               <div>
+            	
+            	<strong>Name</strong>
         		
-				<?php echo $_SESSION['p_name'];?>
+				<input type="text" name="name" style="width:150px;" value="<?php echo $_SESSION['p_name'];?>"/>
 				
+                <strong>Age&nbsp;</strong>
                 
+				<input type="text" name="age" maxlength="3" style="width:70px;" class="size_box" id="txtChar" value="<?php echo $_SESSION['p_age'];?>" /> 
+                
+                
+
+                
+				<input type="radio" name="gender" value="M" checked <?php if($_SESSION['p_gender']=='M'){echo "checked";} ?>/><strong>M</strong>
+				<input type="radio" name="gender" value="F" <?php if($_SESSION['p_gender']=='F'){echo "checked";} ?>/><strong>F</strong>
+                
+				  <strong>Phone&nbsp;</strong>
+                  
+				  <input type="text" name="phone" maxlength="10" class="size_input" id="txtChar" style="width:120px;" value="<?php echo $_SESSION['p_mob'];?>" />
+                                  
+                                  <strong>PID&nbsp;</strong>
+                  
+				  <input style=" background: #CCC;  " type="text" name="pid" readonly="" style="width:100px;" value="<?php echo $pid= $_SESSION['p_id'];?>">
+                 
 
 
                    <?php //echo  $_SESSION['p_email'];?>
-                   	<div style="float:right; margin-top:3px">
-				 		
-                 	</div>
+				 
+
 				</div>
-		     <div class="cls"></div>
+				                  
+            <div class="cls"></div>
           </div>
+          
+
+		
+        <div class="cls"></div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
      <div class="cls"></div>
   
   <div class="category">

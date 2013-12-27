@@ -43,6 +43,19 @@ include("menubar.php");
         <div style="float:right; margin-right:10px;">
 
   		 </div>
+                    <form method="post">
+              <input style=" float: right; font-size: large " type="submit" name="sels" value="Show Claims"> <select name="cl" style=" float: right; font-size: large ;  ">
+       <option value="0">Select </option>
+   <?php 
+   $w1l=  mysql_query("select name from patient_details group by name");
+   while ($w=  mysql_fetch_array($w1l)) {
+       echo '<option value="'.$w['name'].'">'.$w['name'].'</options>';
+   }
+   
+   
+   ?>
+   </select>
+    </form>
     <div class="cls"></div>
     </div>
 <div id="main_center_container">
@@ -63,25 +76,10 @@ include("menubar.php");
             </div>
         </div>
 		
-        
+
 </form>
-    </div>
-</div>
-          <form method="post">
-              <input style=" float: right; font-size: large " type="submit" name="sels" value="Show Claims"> <select name="cl" style=" float: right; font-size: large ;  ">
-       <option value="0">Select </option>
-   <?php 
-   $w1l=  mysql_query("select name from patient_details group by name");
-   while ($w=  mysql_fetch_array($w1l)) {
-       echo '<option value="'.$w['name'].'">'.$w['name'].'</options>';
-   }
-   
-   
-   ?>
-   </select>
-    </form>
- <div class="cls"></div>	
-<?php
+        
+        <?php
 $pid=$_SESSION['p_id'];
 $pname=$_SESSION['p_name'];
 $age=$_SESSION['p_age'];
@@ -90,12 +88,54 @@ $phone=$_SESSION['p_mob'];
 
     ?>
 <form method="post" enctype="multipart/form-data">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <p>Pid<input style=" background: #CCC;  " type="text" name="pid" readonly="" value="<?php echo $pid; ?>">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Name&nbsp;&nbsp;&nbsp;<input type="text" name="pname" readonly="" value="<?php echo $pname; ?>">
-        Age&nbsp;&nbsp;&nbsp; <?php echo $age; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        Gender&nbsp;&nbsp;&nbsp;<?php echo $gen; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Phone&nbsp;&nbsp;&nbsp;<?php echo $phone; ?><br/>
+		
+
+        <div id="add_new_patient">
+    	   	<div id="add_txt" style="float:left; width:300px;">&nbsp;</div>
+            <div id="add_txt"  style="float:right; width:160px;">
+            	
+            </div>
+            <div class="cls"></div>
+               <div>
+            	
+            	<strong>Name</strong>
+        		
+				<input type="text" style="width:150px;"  name="pname" readonly="" value="<?php echo $pname; ?>">
+				
+                <strong>Age&nbsp;</strong>
+                
+				<input type="text" name="age" maxlength="3" style="width:50px;"  class="size_box" id="txtChar" value="<?php echo $age; ?>" /> 
+                
+                
+
+                
+				<input type="radio" name="gender"  value="M" checked <?php if($gen=='M'){echo "checked";} ?>/><strong>M</strong>
+				<input type="radio" name="gender" value="F" <?php if($gen=='F'){echo "checked";} ?>/><strong>F</strong>
+                
+				  <strong>Phone&nbsp;</strong>
+                  
+				  <input type="text" name="phone" maxlength="10" class="size_input" id="txtChar" style="width:120px;" value="<?php echo $phone; ?>" />
+                                  
+                                  
+                 
+                                  
+
+                   <?php //echo  $_SESSION['p_email'];?>
+				 
+
+				</div>
+				                  
+            <div class="cls"></div>
+          </div>
+          
+
+		
+        <div class="cls"></div>
+        
+        <strong>Patient ID &nbsp;</strong>
+                  
+				  <input style=" background: #CCC;  " type="text" name="pid" readonly="" value="<?php echo $pid; ?>">
+
           TPA<select name="tpa">
               
               <option value="0">Select TPA</option>
@@ -157,7 +197,7 @@ $phone=$_SESSION['p_mob'];
     	<input type="file" class="btn" name="in_img2">
     </div>
     <div class="insurance_type">
-    	<span>I-Card</span>
+    	<span>Office I-Card</span>
     </div>
     <div class="insurance_type">
     	<input type="file" class="btn" name="icard1">
@@ -178,7 +218,7 @@ $phone=$_SESSION['p_mob'];
     </div>
    
     <div class="insurance_type">
-    	<span>Photo</span>
+    	<span>Photo ID</span>
     </div>
     <div class="insurance_type">
     	<input type="file" class="btn" name="photo">
@@ -195,7 +235,7 @@ $phone=$_SESSION['p_mob'];
 <div class="insurance_block">
 	<table style="width:100%">
     	<tr>
-           <th>PID</th>
+           <th>Claims ID</th>
             <th>Name</th>
             <th>TPA</th>
             <th>Corporate</th>

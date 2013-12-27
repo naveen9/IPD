@@ -301,7 +301,7 @@ echo $v_id;
 
 </span> <span>
  <input type="submit" value="Print" name="print_receipt" class="btn"/>
-<input type="submit" value="Discharge summary" name="print_dis" class="btn"/>
+<input type="submit" value="Confirm Discharge" name="print_dis" class="btn"/>
 
 <a href="admission-ipd.php" class="btn">Home</a>
 
