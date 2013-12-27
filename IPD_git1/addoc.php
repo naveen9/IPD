@@ -40,34 +40,36 @@ if($_REQUEST['error_msg'])
     <form action="addoc.php" method="post">
         <table>
             <tr>
-                <td>Name *</td></tr>
+                <td>Name *</td>
             <td><input type="text" name="name" /></td>
 
             <td>Phone *</td>
-            <td><input type="text" name="phone" /></td>
+            <td><input type="text" name="phone" /></td></tr>
 
-            <tr><td>Pan number:</td></tr>
+            <tr><td>PAN $ MCI Reg. No.</td>
             <td><input type="text" name="pan" /></td>
 
-            <td>Gender</td>
+            <td>Email</td>
+            <td><input  type="email" name="email" /></td></tr>
+
+            <tr><td>Gender</td>
             <td><select name="gen"><option value="m">Male</option><option value="f">Female</option></select></td>
 
-            <tr><td>D.O.B</td></tr>
-            <td><input type="text" name="age" value="yyyy-mm-dd"></td>
+            <td>D.O.B</td>
+            <td><input type="date" name="age" placeholder="mm-dd-yyyy"></td></tr>
 
-            <td>Email</td>
-            <td><input  type="email" name="email" /></td>
+            
 
-            <tr><td>Graduation</td></tr>
+            <tr><td>Degrees</td>
             <td><input type="text" name="gra" /></td>
-            <td>Spacialization</td>
-            <td><input type="text" name="spc" /></td>
+            <td>Speciality</td>
+            <td><input type="text" name="spc" /></td></tr>
 
-            <tr><td>Address</td></tr>
+            <tr><td>Address</td>
             <td><input type="text" name="address" /></td>
 
-            <tr><td>OPD Time:</td></tr>
-            <td><input type="text" name="opd_time" placeholder="Time to Time"></td>
+            <td>OPD Timing</td>
+            <td><input type="text" name="opd_time" placeholder="Time to Time"></td></tr>
 <!--<select name="opd_time"><?php
               //  for($i=1;$i<=12;$i++){
                 //    echo '<option style="background:#ccc; color:white;">'.$i.' AM'.'</option>';
