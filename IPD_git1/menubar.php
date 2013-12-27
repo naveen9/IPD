@@ -14,7 +14,7 @@ session_start();
                 <li><a href="room_booking.php">Room booking</a></li>
                 <li><a href="ot_booking.php">OT booking</a></li>
                 <li><a href="session_out.php?page=ad">Admission</a></li>
-                <li><a href="patient-demographics.php">Demographics</a></li>
+                <li><a href="session_out.php?page=Demographics">Demographics</a></li>
                 <li><a href="session_out.php?page=pa">Patient Documents</a></li>
                 <li><a href="session_out.php?page=bi">Payment summary</a></li>
                 
