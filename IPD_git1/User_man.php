@@ -18,6 +18,9 @@ echo $session_id;
  else {
          
      ?>
+<h1 style="float: left;  "><a href="User_veri.php">Go back</a></h1>
+<hr>
+
 <center><h2 style="color:  tomato">User Privileges settings</h2></center>
 <hr>
 
