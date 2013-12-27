@@ -258,7 +258,14 @@ while($row=  mysql_fetch_array($mysql))
         echo $ary_data['p_name']; ?>
                                 
                     </span></div>
-                <div class="l_ft dash_width ali_gnment"><span>Cancel</span></div>
+                <div class="l_ft dash_width ali_gnment"><span><a href="cancle_bills.php?id=<?php echo $row['proc_id']; ?>
+                                                                 &name=<?php  echo $row['proc_name'];?>
+                                                                 &amount=<?php echo $row['amount']; ?>
+                                                                 &bill_id=<?php echo $row['bill_id']; ?>
+                                                                 &visit_id=<?php echo $row['visit_id']; ?>
+                                                                 &pname=<?php echo $ary_data['p_name']; ?>
+                                                                 &dep=opdi
+                                                                 ">cancel this bill</a></span></div>
                 <div class="cls"></div>
 <?php } else{?>
                 <div class="l_ft dash_width" style="background:gray;"><?php echo $row['proc_id'];?></div>
@@ -274,7 +281,14 @@ while($row=  mysql_fetch_array($mysql))
         
         $ary_data=  mysql_fetch_array($data);
         echo $ary_data['p_name']; ?></span></div>
-                <div class="l_ft dash_width ali_gnment"><span>Cancel</span></div>
+                <div class="l_ft dash_width ali_gnment"><span><a href="cancle_bills.php?id=<?php echo $row['proc_id']; ?>
+                                                                 &name=<?php  echo $row['proc_name'];?>
+                                                                 &amount=<?php echo $row['amount']; ?>
+                                                                 &bill_id=<?php echo $row['bill_id']; ?>
+                                                                 &visit_id=<?php echo $row['visit_id']; ?>
+                                                                 &pname=<?php echo $ary_data['p_name']; ?>
+                                                                 &dep=opdi
+                                                                 ">cancel this bill</a></span></span></div>
                 <div class="cls"></div>
 <?php }$i++;?>
 <?php } ?>
@@ -318,7 +332,14 @@ while($row=  mysql_fetch_array($mysql))
         echo $ary_data['p_name']; ?>
                                 
                     </span></div>
-                <div class="l_ft dash_width ali_gnment"><span>Cancel</span></div>
+                <div class="l_ft dash_width ali_gnment"><span><a href="cancle_bills.php?id=<?php echo $row['ot_id']; ?>
+                                                                 &name=<?php  echo $row['Procedure_name'];?>
+                                                                 &amount=<?php echo $row['Package']; ?>
+                                                                 &bill_id=<?php echo $row['bill_id']; ?>
+                                                                 &visit_id=<?php echo $row['visit_id']; ?>
+                                                                 &pname=<?php echo $ary_data['p_name']; ?>
+                                                                 &dep=otb
+                                                                 ">cancel this bill</a></span></div>
                 <div class="cls"></div>
 <?php } else{?>
                 <div class="l_ft dash_width" style="background: magenta;"><?php echo $row['ot_id'];?></div>
@@ -334,7 +355,14 @@ while($row=  mysql_fetch_array($mysql))
         
         $ary_data=  mysql_fetch_array($data);
         echo $ary_data['p_name']; ?></span></div>
-                <div class="l_ft dash_width ali_gnment"><span>Cancel</span></div>
+                <div class="l_ft dash_width ali_gnment"><span><a href="cancle_bills.php?id=<?php echo $row['ot_id'];?>
+                                                                 &name=<?php  echo $row['Procedure_name'];?>
+                                                                 &amount=<?php echo $row['Package']; ?>
+                                                                 &bill_id=<?php echo $row['bill_id']; ?>
+                                                                 &visit_id=<?php echo $row['visit_id']; ?>
+                                                                 &pname=<?php echo $ary_data['p_name']; ?>
+                                                                 &dep=otb
+                                                                 ">cancel this bill</a></span></div>
                 <div class="cls"></div>
 <?php }$i++;?>
 <?php } ?>
@@ -368,7 +396,14 @@ while($row=  mysql_fetch_array($mysql))
                                 <?php echo $row['p_name']; ?>
                                 
                     </span></div>
-                <div class="l_ft dash_width ali_gnment"><span>Cancel</span></div>
+                <div class="l_ft dash_width ali_gnment"><span><a href="cancle_bills.php?id=<?php echo $row['m_id']; ?>
+                                                                 &name=<?php  echo $row['m_name'];?>
+                                                                 &amount=<?php echo $row['sub_total']; ?>
+                                                                 &bill_id=<?php echo $row['bill_id']; ?>
+                                                                 &visit_id=<?php echo $row['v_id']; ?>
+                                                                 &pname=<?php echo $ary_data['p_name']; ?>
+                                                                 &dep=pm
+                                                                 ">cancel this bill</a></span></div>
                 <div class="cls"></div>
 <?php } else{?>
                 <div class="l_ft dash_width" style="background: springgreen;"><?php echo $row['m_id'];?></div>
@@ -377,7 +412,14 @@ while($row=  mysql_fetch_array($mysql))
                 <div class="l_ft dash_width" style=" background:springgreen;"><?php echo $row['bill_id']; ?></div>
                 <div class="l_ft dash_width" style=" background:springgreen;"><?php echo $row['v_id']; ?> </div>
                 <div class="l_ft dash_width ali_gnment" style=" background: springgreen; "><span><?php echo $row['p_name']; ?></span></div>
-                <div class="l_ft dash_width ali_gnment"><span>Cancel</span></div>
+                <div class="l_ft dash_width ali_gnment"><span><a href="cancle_bills.php?id=<?php echo $row['m_id']; ?>
+                                                                 &name=<?php  echo $row['m_name'];?>
+                                                                 &amount=<?php echo $row['sub_total']; ?>
+                                                                 &bill_id=<?php echo $row['bill_id']; ?>
+                                                                 &visit_id=<?php echo $row['v_id']; ?>
+                                                                 &pname=<?php echo $ary_data['p_name']; ?>
+                                                                 &dep=pm
+                                                                 ">cancel this bill</a></span></div>
                 <div class="cls"></div>
 <?php }$i++;?>
 <?php } ?>
