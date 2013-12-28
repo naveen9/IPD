@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2013 at 07:21 AM
+-- Generation Time: Dec 28, 2013 at 12:03 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -63,7 +63,7 @@ INSERT INTO `beds_master_table` (`bed_id`, `no_of_bed`, `availability`, `p_id`) 
 (4, 'ground 4', 1, 3),
 (5, 'first 1', 0, 0),
 (6, 'first 2', 1, 5),
-(7, 'first 3', 1, 4),
+(7, 'first 3', 0, 0),
 (8, 'first 4', 1, 6),
 (9, 'second 21', 0, 0),
 (10, 'second 22', 0, 0),
@@ -149,6 +149,33 @@ CREATE TABLE IF NOT EXISTS `birth` (
   `status` varchar(100) NOT NULL,
   PRIMARY KEY (`b_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cancle_bills`
+--
+
+CREATE TABLE IF NOT EXISTS `cancle_bills` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `procedure_id` int(11) NOT NULL,
+  `procedure_name` varchar(55) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `bill_id` int(11) NOT NULL,
+  `ipid` int(11) NOT NULL,
+  `patient_name` varchar(55) NOT NULL,
+  `dep` varchar(55) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `cancle_bills`
+--
+
+INSERT INTO `cancle_bills` (`id`, `procedure_id`, `procedure_name`, `amount`, `bill_id`, `ipid`, `patient_name`, `dep`) VALUES
+(1, 18, 'blood test                                             ', 1000, 56, 3, 'reena ray                                              ', 'opdi'),
+(2, 4, 'blood test                                             ', 5000, 98, 6, 'uttra                                                  ', 'otb'),
+(3, 24, 'blood test                                             ', 1000, 99, 3, 'reena ray                                              ', 'opdi');
 
 -- --------------------------------------------------------
 
@@ -266,7 +293,15 @@ CREATE TABLE IF NOT EXISTS `discharge_table` (
   `disc_date` date NOT NULL,
   `disc_time` varchar(20) NOT NULL,
   PRIMARY KEY (`disc_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `discharge_table`
+--
+
+INSERT INTO `discharge_table` (`disc_id`, `p_id`, `v_id`, `disc_date`, `disc_time`) VALUES
+(1, 0, 0, '2013-12-26', '20:14:14'),
+(2, 4, 4, '2013-12-26', '20:14:44');
 
 -- --------------------------------------------------------
 
@@ -421,7 +456,7 @@ INSERT INTO `duty_roster` (`duty_id`, `StartDate`, `StartTime`, `EndDate`, `EndT
 (2, '2013-12-20', '08:00:00', '2013-12-23', '21:00:00', 1),
 (3, '2013-12-24', '08:00:00', '2013-12-24', '20:00:00', 1),
 (4, '2013-12-22', '08:00:00', '2013-12-26', '21:00:00', 1),
-(5, '2013-12-20', '01:00:00', '2013-12-25', '17:00:00', 1);
+(5, '2013-12-20', '21:00:00', '2013-12-21', '08:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -591,14 +626,15 @@ CREATE TABLE IF NOT EXISTS `inventory_store` (
   `quantity` varchar(200) NOT NULL,
   `ex_date` varchar(200) NOT NULL,
   PRIMARY KEY (`in_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `inventory_store`
 --
 
 INSERT INTO `inventory_store` (`in_id`, `in_name`, `type`, `unit price`, `mrp`, `quantity`, `ex_date`) VALUES
-(1, 'crocin', 'Fixed', 48, 1100, '15', '12-2015');
+(1, 'crocin', 'Fixed', 48, 1100, '1', '12-2015'),
+(2, 'B. sheet', 'Fixed', 0, 0, '6', '12-2016');
 
 -- --------------------------------------------------------
 
@@ -772,7 +808,7 @@ CREATE TABLE IF NOT EXISTS `opd_bill` (
   `reception` varchar(40) NOT NULL,
   PRIMARY KEY (`bill_id`),
   KEY `FK_opd_bill_1` (`visit_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=109 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=111 ;
 
 --
 -- Dumping data for table `opd_bill`
@@ -795,7 +831,9 @@ INSERT INTO `opd_bill` (`bill_id`, `grand_total`, `due_amount`, `paid_amount`, `
 (105, 20, 20, NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, '2013-12-24', '15:11:33', 3, 0, ''),
 (106, 16, 0, 16, NULL, 'paid', NULL, NULL, NULL, NULL, '2013-12-24', '15:13:43', 4, 0, ''),
 (107, 2200, 2200, NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, '2013-12-24', '15:24:12', 4, 1, 'sheena'),
-(108, 20, 20, NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, '2013-12-24', '16:41:49', 3, 1, 'sheena');
+(108, 20, 20, NULL, NULL, 'unpaid', NULL, NULL, NULL, NULL, '2013-12-24', '16:41:49', 3, 1, 'sheena'),
+(109, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, ''),
+(110, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 1, '');
 
 -- --------------------------------------------------------
 
@@ -830,10 +868,10 @@ INSERT INTO `opd_items` (`proc_id`, `visit_id`, `bill_id`, `proc_name`, `doc_inc
 (8, 3, 24, 'blood test', 'DR. R.K. nag', 250, 0, 0, 250, '2013-12-21', '12:43:48', '1', 'sheena'),
 (17, 4, 32, 'blood test', 'DR. R.K. nag', 250, 0, 0, 250, '2013-12-21', '13:11:57', '1', 'sheena'),
 (18, 3, 56, 'blood test', 'DR. R.K. nag', 1000, 0, 0, 1000, '2013-12-22', '19:09:27', '1', 'sheena'),
-(24, 3, 99, 'blood test', 'DR. R.K. nag', 1000, 0, 0, 1000, '2013-12-23', '17:41:25', '1', 'sheena'),
-(25, 3, 102, 'blood test', 'DR. R.K. nag', 2500, 0, 0, 2500, '2013-12-24', '14:59:06', '1', 'mac'),
+(24, 3, 99, 'blood test', 'DR. R.K. nag', 1000, 0, 0, 1000, '2013-12-25', '05:41:25', '1', 'sheena'),
+(25, 3, 102, 'blood test', 'DR. R.K. nag', 2500, 0, 0, 2500, '2013-12-24', '21:59:06', '1', 'mac'),
 (26, 4, 107, 'blood test12', 'DR james ford', 2000, 0, 0, 2000, '2013-12-24', '15:21:29', '1', 'sheena'),
-(27, 4, 107, 'blood test13', 'DR manoj kumar', 200, 0, 0, 200, '2013-12-24', '15:24:05', '1', 'sheena');
+(27, 4, 107, 'blood test13', 'DR manoj kumar', 200, 0, 0, 200, '2013-12-24', '23:24:05', '1', 'sheena');
 
 -- --------------------------------------------------------
 
@@ -963,20 +1001,29 @@ CREATE TABLE IF NOT EXISTS `ot_store` (
   `incharge_name` varchar(200) NOT NULL,
   `i_name` varchar(200) NOT NULL,
   `type` varchar(200) NOT NULL,
-  `quantity` varchar(200) NOT NULL,
+  `quantity` int(11) NOT NULL,
   `ex_date` varchar(200) NOT NULL,
   `date` varchar(200) NOT NULL,
   `time` varchar(200) NOT NULL,
   `type_of_store` varchar(200) NOT NULL,
   PRIMARY KEY (`ot_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `ot_store`
 --
 
 INSERT INTO `ot_store` (`ot_id`, `in_id`, `incharge_name`, `i_name`, `type`, `quantity`, `ex_date`, `date`, `time`, `type_of_store`) VALUES
-(1, 1, '', 'crocin', 'Fixed', '8', '12-2015', '21-12-13', '17:41:12', 'OT Store');
+(3, 1, '', 'crocin', 'Fixed', 5, '12-2015', '26-12-13', '16:48:47', 'OT Store'),
+(4, 1, '', 'crocin', 'Fixed', 23, '12-2015', '26-12-13', '16:52:12', 'General Word Store'),
+(6, 2, '', 'B. sheet', 'Fixed', 10, '12-2016', '26-12-13', '17:52:08', 'OPD Store'),
+(10, 1, '', 'crocin', 'Fixed', 4, '12-2015', '28-12-13', '15:10:32', 'OPD Store'),
+(12, 1, '', 'crocin', 'Fixed', 4, '12-2015', '28-12-13', '16:21:29', 'Semi Private Word Store'),
+(13, 1, '', 'crocin', 'Fixed', 2, '12-2015', '28-12-13', '16:21:48', 'Private Word Store'),
+(14, 1, '', 'crocin', 'Fixed', 2, '12-2015', '28-12-13', '16:22:04', 'Lab Store'),
+(15, 1, '', 'crocin', 'Fixed', 1, '12-2015', '28-12-13', '16:22:49', 'Pharmacy Store'),
+(16, 1, '', 'crocin', 'Fixed', 2, '12-2015', '28-12-13', '16:23:01', 'VIP Store'),
+(17, 1, '', 'crocin', 'Fixed', 2, '12-2015', '28-12-13', '16:23:14', 'ICU Store');
 
 -- --------------------------------------------------------
 
@@ -1059,7 +1106,17 @@ CREATE TABLE IF NOT EXISTS `patient_details` (
   `o_img2` varchar(60) NOT NULL,
   `corporate` varchar(35) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `patient_details`
+--
+
+INSERT INTO `patient_details` (`id`, `pid`, `name`, `tpa`, `in_img1`, `in_img2`, `id_img1`, `id_img2`, `photo`, `o_img1`, `o_img2`, `corporate`) VALUES
+(1, 1, 'ekta', '0', 'images/1.jpg', 'images/', 'images/', 'images/', 'images/', '', '', '0'),
+(2, 1, 'ekta', '0', 'images/1.jpg', 'images/', 'images/', 'images/', 'images/', '', '', '0'),
+(3, 1, 'ekta', '0', 'images/1.jpg', 'images/', 'images/', 'images/', 'images/', '', '', '0'),
+(4, 1, 'ekta', '0', 'images/1.jpg', 'images/', 'images/', 'images/', 'images/', '', '', '0');
 
 -- --------------------------------------------------------
 
@@ -1150,7 +1207,17 @@ CREATE TABLE IF NOT EXISTS `patient_other_img` (
   `claim_id` int(11) NOT NULL,
   `img` varchar(100) NOT NULL,
   PRIMARY KEY (`img_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `patient_other_img`
+--
+
+INSERT INTO `patient_other_img` (`img_id`, `claim_id`, `img`) VALUES
+(1, 1, 'images/'),
+(2, 1, 'images/'),
+(3, 1, 'images/'),
+(4, 1, 'images/');
 
 -- --------------------------------------------------------
 
@@ -1532,6 +1599,14 @@ CREATE TABLE IF NOT EXISTS `room_charge_pay` (
   `bill_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `room_charge_pay`
+--
+
+INSERT INTO `room_charge_pay` (`patient_id`, `v_id`, `total_room_charge`, `bill_id`) VALUES
+('', '', 0, 109),
+('4', '4', 0, 110);
+
 -- --------------------------------------------------------
 
 --
@@ -1589,6 +1664,38 @@ CREATE TABLE IF NOT EXISTS `tpa` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `used_inventory`
+--
+
+CREATE TABLE IF NOT EXISTS `used_inventory` (
+  `use_id` int(200) NOT NULL AUTO_INCREMENT,
+  `ot_id` int(200) NOT NULL,
+  `in_name` varchar(200) NOT NULL,
+  `type` varchar(200) NOT NULL,
+  `quantity` int(200) NOT NULL,
+  `ex_date` varchar(200) NOT NULL,
+  `date` date NOT NULL,
+  `time` varchar(200) NOT NULL,
+  `type_of_store` varchar(200) NOT NULL,
+  PRIMARY KEY (`use_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+
+--
+-- Dumping data for table `used_inventory`
+--
+
+INSERT INTO `used_inventory` (`use_id`, `ot_id`, `in_name`, `type`, `quantity`, `ex_date`, `date`, `time`, `type_of_store`) VALUES
+(7, 2, 'crocin', 'Fixed', 2, '12-2015', '2028-12-13', '14:20:50', 'OPD Store'),
+(10, 1, 'crocin', 'Fixed', 1, '12-2015', '2028-12-13', '14:29:54', 'OT Store'),
+(12, 7, 'B. sheet', 'Fixed', 14, '12-2016', '2028-12-13', '14:36:52', 'OT Store'),
+(22, 8, 'crocin', 'Fixed', 3, '12-2015', '2028-12-13', '14:45:10', 'OT Store'),
+(24, 9, 'crocin', 'Fixed', 2, '12-2015', '2028-12-13', '14:47:04', 'OT Store'),
+(25, 6, 'B. sheet', 'Fixed', 20, '12-2016', '2028-12-13', '15:04:04', 'OPD Store'),
+(26, 11, 'B. sheet', 'Fixed', 8, '12-2016', '2028-12-13', '15:14:00', 'Miner ot Store');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_data`
 --
 
@@ -1604,7 +1711,7 @@ CREATE TABLE IF NOT EXISTS `user_data` (
   `default_page` varchar(55) NOT NULL,
   `default_link` varchar(55) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `user_data`
@@ -1613,7 +1720,8 @@ CREATE TABLE IF NOT EXISTS `user_data` (
 INSERT INTO `user_data` (`id`, `name`, `username`, `password`, `phone`, `gender`, `usertype`, `verify`, `default_page`, `default_link`) VALUES
 (1, 'admin', 'admin', 'admin', 0, 'male', 'admin', 1, 'user_veri.php', 'user_veri.php'),
 (5, 'sheena', 'sheena', 'sheena', 9817331414, 'F', 'NULL', 1, '', 'ipd_visit.php'),
-(6, 'mac', 'mac', 'mac', 789666555, 'M', 'NULL', 1, '', 'dashboard.php');
+(6, 'mac', 'mac', 'mac', 789666555, 'M', 'NULL', 1, '', 'dashboard.php'),
+(7, 'billingadmin', 'billingadmin', '123', 7896541225, 'F', 'NULL', 1, '', 'dashboard.php');
 
 -- --------------------------------------------------------
 
@@ -1639,7 +1747,7 @@ CREATE TABLE IF NOT EXISTS `user_priv` (
   `default_page` varchar(55) NOT NULL,
   `default_link` varchar(55) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `user_priv`
@@ -1647,7 +1755,8 @@ CREATE TABLE IF NOT EXISTS `user_priv` (
 
 INSERT INTO `user_priv` (`id`, `user_id`, `dashboard`, `reception`, `ipd_billing`, `pharmacy`, `diagnostics`, `inventory`, `accounting`, `data_mx`, `mis`, `hosp_admin`, `med_records`, `claim`, `default_page`, `default_link`) VALUES
 (3, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '', 'ipd_visit.php'),
-(4, 6, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 'dashboard.php');
+(4, 6, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 'dashboard.php'),
+(5, 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '', 'dashboard.php');
 
 -- --------------------------------------------------------
 
@@ -1712,7 +1821,7 @@ INSERT INTO `visit_register` (`visit_id`, `visit_date`, `visit_time`, `p_id`, `p
 (1, '2013-12-20', '06:40:26', 1, '1', 'ground 1', 'AC', 'DR. R.K. nag'),
 (2, '2013-12-21', '10:57:54', 2, '1', 'ground 2', 'VIP', 'DR manoj kumar'),
 (3, '2013-12-21', '11:00:57', 3, '1', 'ground 4', 'General', 'DR manoj kumar'),
-(4, '2013-12-21', '11:50:41', 4, '1', 'first 3', 'General', 'DR. Diviya chaudhary'),
+(4, '2013-12-21', '11:50:41', 4, '1', 'Discharge patient', 'General', 'DR. Diviya chaudhary'),
 (5, '2013-12-21', '11:51:47', 5, '1', 'first 2', 'VIP', 'DR. Diviya chaudhary'),
 (6, '2013-12-21', '11:52:52', 6, '1', 'first 4', 'VIP', 'DR. Diviya chaudhary'),
 (7, '2013-12-22', '07:10:18', 7, '1', 'category', 'category', 'DR. R.K. nag');
