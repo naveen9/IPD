@@ -288,7 +288,7 @@ while($row=  mysql_fetch_array($mysql))
                                                                  &visit_id=<?php echo $row['visit_id']; ?>
                                                                  &pname=<?php echo $ary_data['p_name']; ?>
                                                                  &dep=opdi
-                                                                 ">cancel this bill</a></span></span></div>
+                                                                 ">cancel this bill</a></span></div>
                 <div class="cls"></div>
 <?php }$i++;?>
 <?php } ?>
@@ -1030,7 +1030,14 @@ while($ftch=  mysql_fetch_array($mysql))
         
         ?></div>
 
-         	<input type="submit" name="del" class="btn" value="Delete">
+         	<span><a href="cancle_bills.php?id=<?php echo $ftch['proc_id']; ?>
+                                                                 &name=<?php  echo $ftch['proc_name'];?>
+                                                                 &amount=<?php echo $ftch['amount']; ?>
+                                                                 &bill_id=<?php echo $ftch['bill_id']; ?>
+                                                                 &visit_id=<?php echo $ftch['visit_id']; ?>
+                                                                 &pname=<?php echo $ary_data['p_name']; ?>
+                                                                 &dep=opdi
+                                                                 ">cancel this bill</a></span>
     </div>
 	
             <?php 
@@ -1057,7 +1064,16 @@ while($ftch=  mysql_fetch_array($mysql))
         
         ?></div>
 
-         	<input type="submit" name="del" class="btn" value="Delete">
+         
+         	<span><a href="cancle_bills.php?id=<?php echo $ftch['proc_id']; ?>
+                                                                 &name=<?php  echo $ftch['proc_name'];?>
+                                                                 &amount=<?php echo $ftch['amount']; ?>
+                                                                 &bill_id=<?php echo $ftch['bill_id']; ?>
+                                                                 &visit_id=<?php echo $ftch['visit_id']; ?>
+                                                                 &pname=<?php echo $ary_data['p_name']; ?>
+                                                                 &dep=opdi
+                                                                 ">cancel this bill</a></span>
+    
             
             <?php
             } $i++; } ?>
@@ -1113,7 +1129,16 @@ while($ftch=  mysql_fetch_array($mysql))
         
         ?></div>
 
-         	<input type="submit" name="del" class="btn" value="Delete">
+         	
+         	<span><a href="cancle_bills.php?id=<?php echo $ftch['ot_id']; ?>
+                                                                 &name=<?php  echo $ftch['Procedure_name'];?>
+                                                                 &amount=<?php echo $ftch['Package']; ?>
+                                                                 &bill_id=<?php echo $ftch['bill_id']; ?>
+                                                                 &visit_id=<?php echo $ftch['visit_id']; ?>
+                                                                 &pname=<?php echo $ary_data['p_name']; ?>
+                                                                 &dep=otb
+                                                                 ">cancel this bill</a></span>
+    
     </div>
 	
             <?php 
@@ -1140,7 +1165,16 @@ while($ftch=  mysql_fetch_array($mysql))
         
         ?></div>
 
-         	<input type="submit" name="del" class="btn" value="Delete">
+         	
+         	<span><a href="cancle_bills.php?id=<?php echo $ftch['ot_id']; ?>
+                                                                 &name=<?php  echo $ftch['Procedure_name'];?>
+                                                                 &amount=<?php echo $ftch['Package']; ?>
+                                                                 &bill_id=<?php echo $ftch['bill_id']; ?>
+                                                                 &visit_id=<?php echo $ftch['visit_id']; ?>
+                                                                 &pname=<?php echo $ary_data['p_name']; ?>
+                                                                 &dep=otb
+                                                                 ">cancel this bill</a></span>
+    
             
             <?php
             } $i++; } ?>
@@ -1197,7 +1231,9 @@ while($ftch=  mysql_fetch_array($mysql))
         
         ?></div>
 
-         	<input type="submit" name="del" class="btn" value="Delete">
+         	     	
+         	<span><a href="cancle_bills.php?id=<?php echo $ftch['m_id']; ?>&name=<?php  echo $ftch['m_name'];?>&amount=<?php echo $ftch['sub_total']; ?>&bill_id=<?php echo $ftch['bill_id']; ?>&visit_id=<?php echo $ftch['v_id']; ?>&pname=<?php echo $ftch['p_name']; ?>&dep=pm&dept=otby">cancel this bill</a></span>
+    
     </div>
 	
             <?php 
@@ -1217,7 +1253,8 @@ while($ftch=  mysql_fetch_array($mysql))
         
         ?></div>
 
-         	<input type="submit" name="del" class="btn" value="Delete">
+         	
+         	<span><a href="cancle_bills.php?id=<?php echo $ftch['m_id']; ?>&name=<?php  echo $ftch['m_name'];?>&amount=<?php echo $ftch['sub_total']; ?>&bill_id=<?php echo $ftch['bill_id']; ?>&visit_id=<?php echo $ftch['v_id']; ?>&pname=<?php echo $ftch['p_name']; ?>&dep=pm&dept=a">cancel this bill</a></span>
             
             <?php
             } $i++; } ?>
