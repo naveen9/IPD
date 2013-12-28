@@ -59,7 +59,8 @@ include("menubar.php");
 
 
                 <?php $res3=mysql_query("select * from ot_store where type_of_store='Pharmacy Store'");
-                while($row3=mysql_fetch_array($res3)){  ?>
+                while($row3=mysql_fetch_array($res3)){  
+                    $ot_id=$row3[0];?> 
 
                   <div class="cls" style="margin-bottom:15px; height:1px; background:#FFF;"></div>
 
@@ -72,6 +73,7 @@ include("menubar.php");
                     <div style="float:left; width:200px;  text-align:center"><?php echo $row3[6];?></div>
                     
                     <div style="float:left; width: 80px; "><input type="submit"name="transfer1" value="Transfer" class="btn"/></div>
+                    <div style="float:left; width: 20px; "><a href='used_inventrey.php?used=<?php echo $ot_id; ?> '>Used</a></div>
                 <div class="cls" style="margin-top:15px;  border-bottom:1px solid lightgray;"></div>
 
         </form>

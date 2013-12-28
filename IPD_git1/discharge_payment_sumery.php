@@ -24,7 +24,8 @@ if($db==0)
 
     include("header.php");
 include("menubar.php");
-
+$v_id=$_GET['visitId'];
+$_SESSION['v_id']=$v_id;
 
 ?>
 
@@ -38,7 +39,7 @@ include("menubar.php");
             <div class="cls"></div>
          </div>
          <?php
-         $v_id=$_GET['visitId'];
+         
          $select21=("select * from opd_bill where visit_id=$v_id and paid_amount !='nall' and paid_amount !=0");
           $result = mysql_query($select21) or die( "Could not execute sql: {$sql}");
 
@@ -60,7 +61,7 @@ include("menubar.php");
             <?php } ?>
         
         <?php
-         $v_id=$_SESSION['v_id'];
+         //$v_id=$_SESSION['v_id'];
          //echo $v_id;
          
           $result1 = mysql_query("select SUM(grand_total),SUM(due_amount),SUM(paid_amount) from opd_bill where visit_id=$v_id") or die( "Could not execute sql: {$sql}");
