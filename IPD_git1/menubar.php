@@ -117,7 +117,7 @@ session_start();
         <ul>
             <li><a href="doctors-list.php">Doctors</a></li>
             <li><a href="procedure-list.php">Procedures</a></li>
-            <li><a href="master_consultation.php">Consultation</a></li>
+            <li><a href="master_consultation.php">Dr. Visit</a></li>
             <li><a href="pc-list.php">Panel and Corporate</a></li>
             <li><a href="source-list.php">Source</a></li>
             <li><a href="Admin_beds.php">BEDS</a></li>

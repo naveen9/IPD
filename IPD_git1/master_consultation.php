@@ -72,8 +72,8 @@ include("menubar.php");
     } 
     ?></select></td>
 
-    <td>Billing category </td>
-    <td><select name="bill_cat"><?php include 'condb.php'; $select=("SELECT * FROM  `billing_cat` "); 
+    <td style="float:right">Panel</td>
+    <td><select style="width: 100px; float: left " name="bill_cat"><?php include 'condb.php'; $select=("SELECT * FROM  panel "); 
     $query=mysql_query($select); 
     while ($row=mysql_fetch_array($query)) {
       echo '<option>'. $row[1].'</option>';
@@ -122,7 +122,10 @@ mysql_query($insert)or die(mysql_error());
 
 }
 //DISPLAY  CONSULTATIONS  
-
+echo 'doctor';
+echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Panel';
+echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Room type';
+echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount';
 $view=("SELECT * FROM doctor_billing WHERE 1");
 $vquery=mysql_query($view);
 while ($row=mysql_fetch_array($vquery)) {
@@ -142,7 +145,7 @@ echo '<td>';
 echo '<input type="hidden" name="check" value="'.$dbid.'" />';
 echo '</td>';
 echo '<td>';
-echo 'DOCTOR:<select name="doc_name1">'.$select=("SELECT * FROM  `doc_master_table` WHERE doc_name!='$name'");
+echo '<select name="doc_name1">'.$select=("SELECT * FROM  `doc_master_table` WHERE doc_name!='$name'");
  
     $query=mysql_query($select); 
       echo '<option>'. $name.'</option>';
@@ -152,7 +155,7 @@ echo 'DOCTOR:<select name="doc_name1">'.$select=("SELECT * FROM  `doc_master_tab
     } '</select>';
 echo '</td>';
 echo '<td>';
-echo 'Billing category:<select name="doc_cat1">'.$select=("SELECT * FROM  `billing_cat` WHERE type!='$cat'"); 
+echo '<select name="doc_cat1">'.$select=("SELECT * FROM  `billing_cat` WHERE type!='$cat'"); 
     $query=mysql_query($select); 
       echo '<option>'. $cat.'</option>';
     while ($row=mysql_fetch_array($query)) {
@@ -161,7 +164,7 @@ echo 'Billing category:<select name="doc_cat1">'.$select=("SELECT * FROM  `billi
     } '</select>';
 echo '</td>';
 echo '<td>';
-echo 'Room Type:<select name="doc_room">'.$select=("SELECT * FROM  `room_type` WHERE room_type!='$room'"); 
+echo '<select name="doc_room">'.$select=("SELECT * FROM  `room_type` WHERE room_type!='$room'"); 
     $query=mysql_query($select); 
       echo '<option>'. $room.'</option>';
     while ($row=mysql_fetch_array($query)) {
@@ -170,7 +173,7 @@ echo 'Room Type:<select name="doc_room">'.$select=("SELECT * FROM  `room_type` W
     } '</select>';
 echo '</td>';
 echo '<td>';
-echo 'Amount:<input type="text" name="amount1" value="'.$amount.'">';
+echo '<input type="text" name="amount1" value="'.$amount.'">';
 echo '</td>';
 echo '<td>';
 echo '<input type="submit" name="update" value="Update" class="btn">';

@@ -233,7 +233,7 @@ $last_month;
 
 
             <?php  
-$mysql=  mysql_query("select * from opd_items where (date BETWEEN '$last_month' AND '$edate') AND reception='$uname'");
+$mysql=  mysql_query("select * from opd_items where (date BETWEEN '$last_month' AND '$edate') ");
 
 while($row=  mysql_fetch_array($mysql))
 {
@@ -572,72 +572,87 @@ while($row=  mysql_fetch_array($mysql))
            echo 'page3';
        ?>
        	<div id="tabs-3">
-        <form>
-            <div class="bill_clr">
-			    <div class="l_ft dash_width"><span>VisitID</span></div>
-				<div class="l_ft pro_name"><span>Patient</span></div>
-                <div class="l_ft dash_width"><span>Bill Id</span></div>
-                <div class="l_ft dash_width"><span>Bill Amount</span></div>
-                <div class="l_ft dash_width"><span>Due</span></div>
-                <div class="l_ft dash_width"><span>Proc ID</span></div>
-                <div class="l_ft dash_width"><span>Proc Name</span></div>
-                <div class="l_ft dash_width"><span>Proc Amount</span></div>
-                
-        </div>
-                  <div class="bill_height">
-<?php // start cancelled tab 
+ <?php  
+	 $uid=$_SESSION['uid'];
+         $maxid1=mysql_query("select MAX(`duty_id`) from duty_roster where user_id='$uid'");
+         $rtr=  mysql_fetch_array($maxid1);
+        echo  $rmx=$rtr[0];
+        $sql=  mysql_query("select * from duty_roster where duty_id='$rmx' AND user_id='$uid'")or die(mysql_error());
+        $fetch=  mysql_fetch_array($sql);
+        $sdate= $fetch['StartDate'];
+        $stime= $fetch['StartTime'];
+        $edate= $fetch['EndDate'];
+        $etime= $fetch['EndTime'];
+#$last_month = date('Y-m-d', strtotime($sdate . " - 30 day"));
+#$last_month;
+     
 
-$res=mysql_query("SELECT * FROM opd_bill where proc_status=0"); ?>				  
-             <?php  while($row=mysql_fetch_array($res))
-   {?>
-	   <?php $bill_id=$row['bill_id']; ?>
-        <?php $res3=mysql_query("select * from opd_items where bill_id='$bill_id' && proc_status=0"); 
-		while($row3=mysql_fetch_array($res3)){	?>
-			    
-               <?php $visitId = $row['visit_id']; ?>
-               
-               <?php 
-			   $qr1="select p_id from visit_register where visit_id='$visitId'";
-				$res1=mysql_query($qr1);
-				$row1=mysql_fetch_array($res1);
-				$row1=$row1['p_id'];
-				$qr2="select p_name from patient_info where patient_id='$row1'";
-				$res2=mysql_query($qr2);
-				$row2=mysql_fetch_array($res2);
-			   ?>
-               <?php 
-				$visit=$row['visit_id'];
-			    if($i%2==0){ ?>
-				<div class="l_ft dash_width" ><?php echo $row['visit_id'];?></div>
-                <div class="l_ft pro_name"><?php echo $row2['p_name']; ?></div>                
-                <div class="l_ft dash_width"><?php echo $row['bill_id']; ?></div>
-                <div class="l_ft dash_width"><?php echo $row['paid_amount']; ?></div>
-                <div class="l_ft dash_width"><?php echo $row['due_amount']; ?> </div>
-                <div class="l_ft dash_width"><?php echo $row3['proc_id']; ?></div><?php $proc_id=$row3['proc_id']; ?>
-                <div class="l_ft dash_width"><?php echo $row3['proc_name']; ?></div>
-                <div class="l_ft dash_width"><?php echo $row3['amount']; ?></div>
-               <div class="cls"></div>
-<?php }else{?>
-                <div class="l_ft dash_width" style="background:gray"><?php echo $row['visit_id'];?></div>
-                <div class="l_ft pro_name"  style="background:gray"><?php echo $row2['p_name']; ?></div>                
-                <div class="l_ft dash_width" style="background:gray"><?php echo $row['bill_id']; ?></div>
-                <div class="l_ft dash_width" style="background:gray"><?php echo $row['paid_amount']; ?></div>
-                <div class="l_ft dash_width" style="background:gray"><?php echo $row['due_amount']; ?> </div>
-                <div class="l_ft dash_width" style="background:gray"><?php echo $row3['proc_id']; ?></div><?php $proc_id=$row3['proc_id']; ?>
-                <div class="l_ft dash_width" style="background:gray"><?php echo $row3['proc_name']; ?></div>
-                <div class="l_ft dash_width" style="background:gray"><?php echo $row3['amount']; ?></div>
-               <div class="cls"></div>
 
-<?php }$i++;?>			   
-       <?php }} ?>
-	   
-	   <?php // end cancelled tab ?>
-        </div>
+	  ?>
+	  
+	  <div class="cls"></div>
+		<div class="transaction">
+	<div id="field_name">
+            <div id="head_lft" style="float:left; width: 100px; ">Procedure Id</div>
+        <div id="head_lft" style="float:left; width: 100px; ">Items</div>
+        <div id="head_lftw" style="float:left; width: 100px; ">Amount</div>
+        <div id="head_lftw" style="float:left; width: 100px; ">Bill Id</div>
+        <div id="head_lft" style="float:left; width: 100px; ">Ip ID</div>
+        <div id="head_lftw" style="float:left; width: 100px; ">Patient name</div>
+        <div id="head_lftw" style="float:left; width: 100px; ">Canceled by</div>
 
-      </form>
+	 </div>
+    
+            <?php 
+$mysql=  mysql_query("select * from cancle_bills where recption_id='$uid' AND reception_name='$uname' ORDER BY  `id` DESC ");
+
+while($ftch=  mysql_fetch_array($mysql))
+{
+
+?>
+                    <div class="cls"></div>
+    <div id="even">
+	<form method="post" action="print_dashboard.php">
+<?php
+            if($i%2==0)
+            {
+    ?>
+                <div id="head_lft" style="float:left; width: 100px; "><?php echo $ftch['procedure_id']; ?></div>
+            
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['procedure_name']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['amount']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['bill_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['ipid']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['patient_name'];?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['reception_name'];?></div>
+         	
+
     </div>
+	
+            <?php 
+            }
+            else
+            {
+            ?>
+              <div id="head_lft" style="float:left; width: 100px; "><?php echo $ftch['procedure_id']; ?></div>
+            
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['procedure_name']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['amount']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['bill_id']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['ipid']; ?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['patient_name'];?></div>
+        <div id="head_lftw" style="float:left; width: 100px; "><?php echo $ftch['reception_name'];?></div>
+         	
 
-          
+            
+            <?php
+            } $i++; } ?>
+                    
+               
+    </div>
+        </div>
+
+            
        <?php  
        }
        ?>
@@ -648,40 +663,19 @@ $res=mysql_query("SELECT * FROM opd_bill where proc_status=0"); ?>
        ?>
           <div id="tabs-4">
     <?php 
-	 //collection=;
-	 
-	// cash 
-$cash=mysql_query("select sum(crnt_gvn_anmt) from opd_recpt where recption_id='$r_id' && payment_mode='cash' and date between '$StartDate' and '$EndDate' and time between '$StartTime' and '$EndTime'");//echo $cash;
-$cash=mysql_fetch_row($cash);
-			  $Cash=$cash[0]; 
-	// end cash
-	
-	//credit_card
-	$credit_card=mysql_query("select sum(crnt_gvn_anmt) from opd_recpt where recption_id='$r_id' && payment_mode='credit_card' and date between '$StartDate' and '$EndDate' and time between '$StartTime' and '$EndTime'");
-$credit_card=mysql_fetch_row($credit_card);
-			  $Credit_card=$credit_card[0]; 
-			 // end credit card
-			 
-	//debit_card
-	$debit_card=mysql_query("select sum(crnt_gvn_anmt) from opd_recpt where recption_id='$r_id' && payment_mode='debit_card' and date between '$StartDate' and '$EndDate' and time between '$StartTime' and '$EndTime'");
-$debit_card=mysql_fetch_row($debit_card);
-			  $Debit_card=$debit_card[0]; 
-	// end debit card
-	
-	//cheque_draft
-	
-	$cheque_draft=mysql_query("select sum(crnt_gvn_anmt) from opd_recpt where recption_id='$r_id' && payment_mode='cheque_draft' and date between '$StartDate' and '$EndDate' and time between '$StartTime' and '$EndTime'");
-$cheque_draft=mysql_fetch_row($cheque_draft);
-			 $Cheque_draft=$cheque_draft[0];
-	// end cheque draft
-	
-	//echo "Cash".$Cash;echo "Credit_card".$Credit_card;echo "Debit_card".$Debit_card;echo "Cheque_draft".$Cheque_draft; 
-			 
-	 $collection=$Cash;		 
-			 
-	//	end collection
-	
-	?>
+    $max=mysql_query("select max(duty_id) from duty_roster");
+			             $mx=mysql_fetch_row($max);
+			                 $maxiId=$mx[0]; 
+				$dutyTime=mysql_query("select * from  duty_roster where duty_id='$maxiId'");
+				$dutyTime=mysql_fetch_array($dutyTime);
+				$dutysdate=$dutyTime['StartDate'];
+                                $dutyedate=$dutyTime['EndDate'];
+    
+    
+       $aco=mysql_query("select SUM(account) from payment_receive where recption='$uname' AND date between '$dutysdate' AND '$dutyedate' ")or die(mysql_error());	
+       $acc=  mysql_fetch_array($aco);
+       
+       ?>
     
     
        <form method="post" action="">
@@ -690,13 +684,18 @@ $cheque_draft=mysql_fetch_row($cheque_draft);
                 <div class="l_ft" style="padding-top:7px;">
                 	<img src="pre.png" />
                 <label for="#">
-				<?php $max=mysql_query("select max(duty_id) from duty_roster");
+				<!--~~~~~~~~~~~~~~~~~~showing Current user date time ~~~~~~~~~~~~~~~~~~~~~-->
+                                <?php $max=mysql_query("select max(duty_id) from duty_roster");
 			             $mx=mysql_fetch_row($max);
 			                 $maxiId=$mx[0]; ?>
 				<?php $dutyTime=mysql_query("select * from  duty_roster where duty_id='$maxiId'");
 				while($dutyTime=mysql_fetch_array($dutyTime))
 				{?>
-				<?php echo $dutyTime['StartDate'];?> &nbsp;&nbsp;&nbsp;
+				<?php echo $dutysdate=$dutyTime['StartDate'];
+                                
+                                $_SESSION['duty_date']=$dutysdate;
+                                
+                                ?> &nbsp;&nbsp;&nbsp;
 				<?php echo $dutyTime['StartTime'];?> &nbsp;&nbsp;&nbsp;
 			<?php	echo $dutyTime['EndDate'];?>&nbsp;&nbsp;&nbsp;
 			<?php	echo $dutyTime['EndTime'];?>&nbsp;&nbsp;&nbsp;
@@ -730,7 +729,7 @@ $cheque_draft=mysql_fetch_row($cheque_draft);
          <div class="bill_height">
 			    <div class="l_ft bill_width_receive">&nbsp;</div>
                 <div class="l_ft bill_width_receive">Others</div>
-                <div class="l_ft bill_width_receive"><input type="text" name="other" /></div>
+                <div class="l_ft bill_width_receive"><input type="text" value="<?php echo $acc[0]; ?>" name="other" /></div>
         </div>
 		<div class="cls"></div>	
             <div class="bill_clr">
@@ -970,14 +969,31 @@ $vendor=$_POST['vendor'];
 #$last_month = date('Y-m-d', strtotime($sdate . " - 30 day"));
 #$last_month;
      
+$sql=  mysql_query("select SUM(paid_amount) from opd_bill where reception='$uname' AND  payment_mode='cash' AND billeddate between '$sdate' AND '$edate' ")or die(mysql_error());
+$paymode= mysql_fetch_array($sql);
+$pay_cash=$paymode[0];
 
+     
+$sql=  mysql_query("select SUM(paid_amount)  from opd_bill where reception='$uname' AND payment_mode='credit' AND billeddate between '$sdate' and '$edate'");
+$paymode= mysql_fetch_array($sql);
+$pay_credit=$paymode[0];
 
-	  ?>
+     
+$sql=  mysql_query("select SUM(paid_amount) from opd_bill where reception='$uname' AND paid_amount!='NULL' AND payment_mode='debit' AND billeddate between '$sdate' and '$edate'");
+$paymode= mysql_fetch_array($sql);
+$pay_debit=$paymode[0];
+
+     
+$sql=  mysql_query("select SUM(paid_amount) from opd_bill where reception='$uname' AND paid_amount!='NULL' AND payment_mode='cheque' AND billeddate between '$sdate' and '$edate'");
+$paymode= mysql_fetch_array($sql);
+$pay_cheque=$paymode[0];
+
+?>
 	  <div class="tot_earning">
-		  <div id="earning"><font color='green'>Total Earning In Cash</font> <font color="blue"><?php echo  $sumCash; ?></font></div>
-		  <div id="earning"><font color='green'>Total Earning In Credit</font><font color="blue"> <?php echo $sumCredit_card;?></font></div>
-		  <div id="earning"><font color='green'>Total Earning In Debit </font><font color="blue"><?php echo $sumDebit_card;?></font></div>
-		  <div id="earning"><font color='green'>Total Earning In Cheque</font> <font color="blue"><?php echo $sumCheque_draft;?></font></div>
+                  <div id="earning"><font color='green'>Total Earning In Cash</font> <font color="blue"><?php echo $pay_cash; ?></font></div>
+		  <div id="earning"><font color='green'>Total Earning In Credit</font><font color="blue"> <?php echo $pay_credit; ?></font></div>
+		  <div id="earning"><font color='green'>Total Earning In Debit </font><font color="blue"><?php echo $pay_debit;?></font></div>
+		  <div id="earning"><font color='green'>Total Earning In Cheque</font> <font color="blue"><?php echo $pay_cheque;?></font></div>
 		  <div class="cls"></div>
 	  </div>
 	  <div class="cls"></div>
@@ -1029,15 +1045,8 @@ while($ftch=  mysql_fetch_array($mysql))
         echo $ary_data['p_name'];
         
         ?></div>
+         	<span><a href="cancle_bills.php?id=<?php echo $ftch['proc_id']; ?>&name=<?php  echo $ftch['proc_name'];?>&amount=<?php echo $ftch['amount']; ?>&bill_id=<?php echo $ftch['bill_id']; ?>&visit_id=<?php echo $ftch['visit_id']; ?>&pname=<?php echo $ary_data['p_name']; ?>&dep=opdi&page=6">cancel this bill</a></span>
 
-         	<span><a href="cancle_bills.php?id=<?php echo $ftch['proc_id']; ?>
-                                                                 &name=<?php  echo $ftch['proc_name'];?>
-                                                                 &amount=<?php echo $ftch['amount']; ?>
-                                                                 &bill_id=<?php echo $ftch['bill_id']; ?>
-                                                                 &visit_id=<?php echo $ftch['visit_id']; ?>
-                                                                 &pname=<?php echo $ary_data['p_name']; ?>
-                                                                 &dep=opdi
-                                                                 ">cancel this bill</a></span>
     </div>
 	
             <?php 
@@ -1065,14 +1074,7 @@ while($ftch=  mysql_fetch_array($mysql))
         ?></div>
 
          
-         	<span><a href="cancle_bills.php?id=<?php echo $ftch['proc_id']; ?>
-                                                                 &name=<?php  echo $ftch['proc_name'];?>
-                                                                 &amount=<?php echo $ftch['amount']; ?>
-                                                                 &bill_id=<?php echo $ftch['bill_id']; ?>
-                                                                 &visit_id=<?php echo $ftch['visit_id']; ?>
-                                                                 &pname=<?php echo $ary_data['p_name']; ?>
-                                                                 &dep=opdi
-                                                                 ">cancel this bill</a></span>
+         	<span><a href="cancle_bills.php?id=<?php echo $ftch['proc_id']; ?>&name=<?php  echo $ftch['proc_name'];?>&amount=<?php echo $ftch['amount']; ?>&bill_id=<?php echo $ftch['bill_id']; ?>&visit_id=<?php echo $ftch['visit_id']; ?>&pname=<?php echo $ary_data['p_name']; ?>&dep=opdi&page=6">cancel this bill</a></span>
     
             
             <?php
@@ -1130,15 +1132,7 @@ while($ftch=  mysql_fetch_array($mysql))
         ?></div>
 
          	
-         	<span><a href="cancle_bills.php?id=<?php echo $ftch['ot_id']; ?>
-                                                                 &name=<?php  echo $ftch['Procedure_name'];?>
-                                                                 &amount=<?php echo $ftch['Package']; ?>
-                                                                 &bill_id=<?php echo $ftch['bill_id']; ?>
-                                                                 &visit_id=<?php echo $ftch['visit_id']; ?>
-                                                                 &pname=<?php echo $ary_data['p_name']; ?>
-                                                                 &dep=otb
-                                                                 ">cancel this bill</a></span>
-    
+         	       	<span><a href="cancle_bills.php?id=<?php echo $ftch['ot_id']; ?>&name=<?php  echo $ftch['Procedure_name'];?>&amount=<?php echo $ftch['Package']; ?>&bill_id=<?php echo $ftch['bill_id']; ?>&visit_id=<?php echo $ftch['visit_id']; ?>&pname=<?php echo $ary_data['p_name']; ?>&dep=otb&page=6">cancel this bill</a></span> 
     </div>
 	
             <?php 
@@ -1166,14 +1160,7 @@ while($ftch=  mysql_fetch_array($mysql))
         ?></div>
 
          	
-         	<span><a href="cancle_bills.php?id=<?php echo $ftch['ot_id']; ?>
-                                                                 &name=<?php  echo $ftch['Procedure_name'];?>
-                                                                 &amount=<?php echo $ftch['Package']; ?>
-                                                                 &bill_id=<?php echo $ftch['bill_id']; ?>
-                                                                 &visit_id=<?php echo $ftch['visit_id']; ?>
-                                                                 &pname=<?php echo $ary_data['p_name']; ?>
-                                                                 &dep=otb
-                                                                 ">cancel this bill</a></span>
+         	<span><a href="cancle_bills.php?id=<?php echo $ftch['ot_id']; ?>&name=<?php  echo $ftch['Procedure_name'];?>&amount=<?php echo $ftch['Package']; ?>&bill_id=<?php echo $ftch['bill_id']; ?>&visit_id=<?php echo $ftch['visit_id']; ?>&pname=<?php echo $ary_data['p_name']; ?>&dep=otb&page=6">cancel this bill</a></span>
     
             
             <?php
@@ -1232,7 +1219,7 @@ while($ftch=  mysql_fetch_array($mysql))
         ?></div>
 
          	     	
-         	<span><a href="cancle_bills.php?id=<?php echo $ftch['m_id']; ?>&name=<?php  echo $ftch['m_name'];?>&amount=<?php echo $ftch['sub_total']; ?>&bill_id=<?php echo $ftch['bill_id']; ?>&visit_id=<?php echo $ftch['v_id']; ?>&pname=<?php echo $ftch['p_name']; ?>&dep=pm&dept=otby">cancel this bill</a></span>
+         	<span><a href="cancle_bills.php?id=<?php echo $ftch['m_id']; ?>&name=<?php  echo $ftch['m_name'];?>&amount=<?php echo $ftch['sub_total']; ?>&bill_id=<?php echo $ftch['bill_id']; ?>&visit_id=<?php echo $ftch['v_id']; ?>&pname=<?php echo $ftch['p_name']; ?>&dep=pm&page=6">cancel this bill</a></span>
     
     </div>
 	
@@ -1254,7 +1241,7 @@ while($ftch=  mysql_fetch_array($mysql))
         ?></div>
 
          	
-         	<span><a href="cancle_bills.php?id=<?php echo $ftch['m_id']; ?>&name=<?php  echo $ftch['m_name'];?>&amount=<?php echo $ftch['sub_total']; ?>&bill_id=<?php echo $ftch['bill_id']; ?>&visit_id=<?php echo $ftch['v_id']; ?>&pname=<?php echo $ftch['p_name']; ?>&dep=pm&dept=a">cancel this bill</a></span>
+         	<span><a href="cancle_bills.php?id=<?php echo $ftch['m_id']; ?>&name=<?php  echo $ftch['m_name'];?>&amount=<?php echo $ftch['sub_total']; ?>&bill_id=<?php echo $ftch['bill_id']; ?>&visit_id=<?php echo $ftch['v_id']; ?>&pname=<?php echo $ftch['p_name']; ?>&dep=pm&page=6">cancel this bill</a></span>
             
             <?php
             } $i++; } ?>

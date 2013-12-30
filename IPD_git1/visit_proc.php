@@ -159,8 +159,8 @@ if($_REQUEST['error_msg1'])
             <div  class="consult_head">
                 
     <div class="l_ft" style="width:200px;">
-    	<input type="text" size="30" style="font-size:16px;" id="inputStringVpP" name="procedure" onKeyUp="lookupVpP(this.value);"
-                           placeholder="Visit" />
+        <input type="text" value="Doctor Visit" size="30" style="font-size:16px;" id="inputStringVpP" name="procedure" onKeyUp="lookupVpP(this.value);"
+                           />
    </div>
 	<div class="l_ft" style="width:150px; float:left; text-align:left">
 		<select name="doc_incharge" style="height:28px;">
