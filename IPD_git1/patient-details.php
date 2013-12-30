@@ -43,19 +43,7 @@ include("menubar.php");
         <div style="float:right; margin-right:10px;">
 
   		 </div>
-                    <form method="post">
-              <input style=" float: right; font-size: large " type="submit" name="sels" value="Show Claims"> <select name="cl" style=" float: right; font-size: large ;  ">
-       <option value="0">Select </option>
-   <?php 
-   $w1l=  mysql_query("select name from patient_details group by name");
-   while ($w=  mysql_fetch_array($w1l)) {
-       echo '<option value="'.$w['name'].'">'.$w['name'].'</options>';
-   }
-   
-   
-   ?>
-   </select>
-    </form>
+                
     <div class="cls"></div>
     </div>
 <div id="main_center_container">
@@ -85,6 +73,7 @@ $pname=$_SESSION['p_name'];
 $age=$_SESSION['p_age'];
 $gen=$_SESSION['p_gender'];
 $phone=$_SESSION['p_mob'];
+$email=$_SESSION['p_email']
 
     ?>
 <form method="post" enctype="multipart/form-data">
@@ -116,6 +105,10 @@ $phone=$_SESSION['p_mob'];
                   
 				  <input type="text" name="phone" maxlength="10" class="size_input" id="txtChar" style="width:120px;" value="<?php echo $phone; ?>" />
                                   
+                                  <strong>Email</strong>
+        		
+				<input type="text" style="width:150px;"  name="email"  value="<?php echo $email; ?>">
+                                  
                                   
                  
                                   
@@ -131,12 +124,22 @@ $phone=$_SESSION['p_mob'];
 
 		
         <div class="cls"></div>
-        
-        <strong>Patient ID &nbsp;</strong>
+        <div id="opd_bill" style="height:20px;">
+        <div>
+            <div style=" margin-left:10px; "
+        <strong>New Claims ID </strong>
                   
-				  <input style=" background: #CCC;  " type="text" name="pid" readonly="" value="<?php echo $pid; ?>">
+				  <input  type="text" name="pid" style="width:150px;"  value="<?php
+              $mysq1=  mysql_query("select max(id)  from patient_details") or die(mysql_error());
+              $clams_id= mysql_fetch_array($mysq1);
+              $clam= $clams_id[0];
+              echo $clam+1;
+              
+              
+              
+              ?>">
 
-          TPA<select name="tpa">
+                                  <strong style=" margin-left:50px; ">  TPA </strong><select name="tpa" >
               
               <option value="0">Select TPA</option>
               <?php
@@ -152,26 +155,16 @@ $phone=$_SESSION['p_mob'];
               
               
           </select>
-     Corporate <select name="corp">
+                                  <strong style=" margin-left:50px; "> Corporate </strong><input type="text" name="corp">
               
-         <option value="0">Select Corporate</option>
-              <?php
-              $mysq=  mysql_query("select corp_name from corporate");
-              while ($ms=  mysql_fetch_array($mysq)) {
-                  
-                  echo '<option value="'.$ms['corp_name'].'">'.$ms['corp_name'].'</option>';
-              }
-              
-              
-              ?>
-              
-              
-          </select>
+         
     </p>
 
     
     <br>    
-  	
+        </div>
+        </div>
+        </div>
    <div class="cls"></div>
 
 
@@ -232,6 +225,36 @@ $phone=$_SESSION['p_mob'];
     <div class="cls"></div>
 </div>
   </form>
+        
+      <div class="cls"></div>
+ 		<div id="opd_bill" style="height:20px;">
+   			<div style="float:left">
+   				<span class="p_adding">Search all Claims of a patient</span>
+   			</div>
+        <div style="float:right; margin-right:10px;">
+
+  		 </div>
+                    <form method="post">
+              <input style=" float: right; font-size: large " type="submit" name="sels" value="Show Claims"> <select name="cl" style=" float: right; font-size: large ;  ">
+       <option value="0">Select </option>
+   <?php 
+   $w1l=  mysql_query("select name,pid from patient_details group by name");
+   while ($w=  mysql_fetch_array($w1l)) {
+       echo '<option value="'.$w['name'].'">'.$w['name'].$w['pid'].'</options>';
+   }
+   
+   
+   ?>
+   </select>
+    </form>
+    <div class="cls"></div>
+    </div>  
+        
+        
+        
+        
+        
+        
 <div class="insurance_block">
 	<table style="width:100%">
     	<tr>
@@ -255,7 +278,7 @@ if($cl!='0')
   {
  ?>
         <tr>
-        <td><?php echo $pd['pid'] ?></td>
+        <td><?php echo $pd['id'] ?></td>
             <td><?php echo $pd['name']; ?></td>
             <td><?php  if($pd['tpa']!='0') { echo $pd['tpa']; } ?></td>
             <td><?php  if($pd['corporate']!='0') { echo $pd['corporate']; } ?></td>
@@ -282,7 +305,7 @@ if($cl!='0')
   {
  ?>
         <tr>
-        <td><?php echo $pd['pid'] ?></td>
+        <td><?php echo $pd['id'] ?></td>
             <td><?php echo $pd['name']; ?></td>
             <td><?php  if($pd['tpa']!='0') { echo $pd['tpa']; } ?></td>
             <td><?php  if($pd['corporate']!='0') { echo $pd['corporate']; } ?></td>

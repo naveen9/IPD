@@ -92,7 +92,7 @@ $Inventory_type=$use1['type_of_store'];
             
     <div style="float:left; width:180px; "><input type="text" name="date" value="<?php echo $billdate; ?>" style="width:140px;" /></div>
     <div style="float:left; width:180px;"><input type="text" name="time" value="<?php echo $time; ?>"  style="width:140px;"  /></div>
-    <div style="float:left; width:90px;"><input type="submit" name="used1" value="Used" class="btn"></div>
+    <div style="float:left; width:90px;"><input type="submit" name="used1" value="Consume" class="btn"></div>
       </div>
 
 </form>
