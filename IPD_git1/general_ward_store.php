@@ -72,7 +72,7 @@ include("menubar.php");
                     <div style="float:left; width:200px;  text-align:center"><?php echo $row3[6];?></div>
                     
                     <div style="float:left; width: 80px; "><input type="submit"name="transfer1" value="Transfer" class="btn"/></div>
-                     <div style="float:left; width: 20px; "><a href='used_inventrey.php?used=<?php echo $ot_id; ?> '>Used</a></div>
+                     <div style="float:left; width: 20px; "><a href='used_inventrey.php?used=<?php echo $ot_id; ?> '>Consume</a></a></div>
                 <div class="cls" style="margin-top:15px;  border-bottom:1px solid lightgray;"></div>
 
         </form>

@@ -32,7 +32,7 @@ header("location: patient-details.php?error_msg=".urlencode("Please Enter a Sear
 }
 else
 {
-$q=mysql_query("select P.patient_id,P.p_name,P.p_age,P.p_gender,P.p_mob,V.visit_id,V.bed_no from patient_info P,visit_register V where P.p_name='$search' or P.patient_id='$search' and V.bed_no!='Discharge patient' and V.p_id=P.patient_id group by P.patient_id");
+$q=mysql_query("select P.patient_id,P.p_name,P.p_age,P.p_gender,P.p_mob,V.visit_id,V.bed_no,P.p_email from patient_info P,visit_register V where P.p_name='$search' or P.patient_id='$search' and V.bed_no!='Discharge patient' and V.p_id=P.patient_id group by P.patient_id");
 $found=mysql_num_rows($q);
 if($found==0)
 {
@@ -64,7 +64,8 @@ $_SESSION['bed_no']=$search_result[6];
 
 
 
-//$_SESSION['p_email']=$search_result['p_email'];
+$_SESSION['p_email']=$search_result[7];
+
 }
 header("location: patient-details.php?error_msg1=".urlencode("Patient Found"));
 }

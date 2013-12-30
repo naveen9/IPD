@@ -141,7 +141,7 @@ session_start();
             <li><a href="User_veri.php">Admin Dashboard</a></li>
             <li><a href="User_man.php">Role Management</a></li>
             <li><a href="hospital_register.php">Hospital Register</a></li>
-            <li><a href="#">Attendance</a></li>
+            <li><a href="attendance.php">Attendance</a></li>
             <li><a href="employe.php">Salary</a></li>
 	
           </ul>
@@ -162,7 +162,7 @@ session_start();
         </li>
           <li><a href="#">Claims</a>
          <ul>
-            <li><a href="patient-details.php">Patient Details</a></li>
+            <li><a href="patient-details.php">Claims Registration</a></li>
             <li><a href="requition.php">Requisition forms</a></li>
             <li><a href="query-form.php">Query</a></li>
            <!-- <li><a href="#">Query Repley</a></li>-->
