@@ -675,6 +675,11 @@ while($ftch=  mysql_fetch_array($mysql))
        $aco=mysql_query("select SUM(account) from payment_receive where recption='$uname' AND date between '$dutysdate' AND '$dutyedate' ")or die(mysql_error());	
        $acc=  mysql_fetch_array($aco);
        
+       
+       $aco=mysql_query("select SUM(account) from payment_to_staff where recption='$uname' AND date between '$dutysdate' AND '$dutyedate' ")or die(mysql_error());	
+       $ps=  mysql_fetch_array($aco);
+       
+       
        ?>
     
     
@@ -767,8 +772,8 @@ while($ftch=  mysql_fetch_array($mysql))
          <div class="cls"></div>
          		<div class="bill_height">
 			    <div class="l_ft bill_width_receive">Staff </div>
-                <div class="l_ft bill_width_receive"><input type="text" name="staff" /></div>
-				<div id="link"><a href="paymentto-staff.php" style="color:#84C1FF">Payment To Staff</a></div>
+        <div class="l_ft bill_width_receive"><input type="text" name="staff" /></div>
+	<div id="link"><a href="paymentto-staff.php" style="color:#84C1FF">Payment To Staff</a></div>
           </div>
           <div class="cls"></div>
           
