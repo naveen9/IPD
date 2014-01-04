@@ -40,16 +40,20 @@ $res=mysql_fetch_row($query);
 <td><input type="text" name="spec" value="<?php echo $spc; ?>" placeholder="specialization"></td>
 <td><input type="text" name="pan" value="<?php echo $pan; ?>" placeholder="pan"></td>
 <td><input type="text" name="gra" value="<?php echo $gra; ?>" placeholder="graduation"></td>
-<td><input type="text" name="opdtime" value="<?php echo $opd_time;  ?>" placeholder="d"></td><td>data</td></tr>
+<td><input type="text" name="opdtime" value="<?php echo $opd_time;  ?>" placeholder="d"></td></tr>
+
 <!--<tr class="alt"><td>data</td><td>data</td><td>data</td><td>data</td></tr>-->
 <!--<tr><td>data</td><td>data</td><td>data</td><td>data</td></tr>
 <tr class="alt"><td>data</td><td>data</td><td>data</td><td>data</td></tr>
 <tr><td>data</td><td>data</td><td>data</td><td>data</td></tr>-->
 
-</table></div>
+</table>
+    <br/>
+<input type="submit" name="sub" value="Update">
+    </div>
     
     <?php
-  
-    echo '</form>';
+echo '</form>';
 
+    
 ?>

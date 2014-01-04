@@ -219,7 +219,7 @@ echo '<div style="float:left; width:50px;">'.$i.'</div>';
 echo '<div style="float:left; width:150px;">';
 //echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='edit_doc.php?did=$row[0]' onclick='javascript:void window.open('edit_doc.php?did=$row[0] ','1384252115538','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;'>$row[1]</a>";
 ?>
-<a href="edit_doc.php?did=<?php echo $row[0]; ?>" onclick="javascript:void window.open('edit_doc.php?did=<?php echo $row[0]; ?>','1384252115538','width=1000,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=10,resizable=1,left=0,top=0');return false;"><?php echo $row[1]; ?></a>
+<a href="edit_doc.php?did=<?php echo $row[0]; ?>" onclick="javascript:void window.open('edit_doc.php?did=<?php echo $row[0]; ?>','1384252115538','width=1000,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;"><?php echo $row[1]; ?></a>
 
 <?php
 echo "</div>";
