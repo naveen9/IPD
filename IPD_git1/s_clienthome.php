@@ -32,26 +32,31 @@ if($_REQUEST['error_msg1'])
 				<!--<form method="post" action="s_search.php"></form>-->
 						
 			<form method="post" name="form1" action="s_create_vid.php">
+            
+ <div class="miscel_charge">        
+        <ul class="visit_sum" style="color:#FFFFFF; font-weight:600;">Patient Documents </ul>
+        <div class="cls"></div>
+    </div>
 			<div id="opd_bill" style="height:20px;">
-            <div style="float:left; width:300px;">
-                <span class="p_adding">Patient Documents</span>
-            </div>
+            
    					<div style="float:left;">
 		            	<strong>Name &nbsp;: </strong>&nbsp;&nbsp;&nbsp;
-		                <span><label for> <?php echo $p_id= $_SESSION['p_name']; ?></label></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                <span><label for> <?php echo $p_id= $_SESSION['p_name']; ?></label></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		        		<!--<input type="text" name="name" value="<?php echo $_SESSION['p_name'];?>"/>-->
 						<strong>Age  &nbsp;:</strong>
-		                <span><label for> <?php echo $p_id= $_SESSION['p_age']; ?></label></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                         
+		                <span><label for> <?php echo $p_id= $_SESSION['p_age']; ?></label></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		              <strong>Gender  &nbsp;:</strong>           
 						<input type="radio" name="gender" value="M" checked <?php if($_SESSION['p_gender']=='M'){echo "checked";} ?>/><strong>M</strong>
-						<input type="radio" name="gender" value="F" <?php if($_SESSION['p_gender']=='F'){echo "checked";} ?>/><strong>F</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="gender" value="F" <?php if($_SESSION['p_gender']=='F'){echo "checked";} ?>/><strong>F</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                
-						  <strong>Phone &nbsp;</strong>
+						  <strong>Phone: &nbsp;</strong>
 		                  
 						  <span><label for> <?php echo $p_id= $_SESSION['p_mob']; ?></label></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                 <?php $pid= $_SESSION['p_id'];?>
 
 		                <?php //echo  $_SESSION['p_email'];?>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <strong>E-mail: &nbsp;</strong>
 				</div>         
 		</div>
 			
@@ -62,21 +67,24 @@ if($_REQUEST['error_msg1'])
 
     
   
-		<div style="width:250px; float:left;margin-left:50px;">
-				<span><strong>Patient ID :</strong></span>
+		<div style="height:20px; width:150px; float:left;margin-left:10px;">
+				<span style="margin-left:0px;"><strong>Category:</strong></span>
+                <span><strong>Patient ID :</strong></span>
 				<span><label for> <?php echo $p_id= $_SESSION['p_id']; ?></label></span>
 		</div>
-        <div style="width:198px; float:left;  margin-left:50px;">
-            <span style="margin-left:0px;"><strong>Bed No :</strong></span>
+        <div style="width:150px; float:left;  margin-left:10px;">
+            <span style="margin-left:0px;"><strong>Bed No:</strong></span>
             <span>
 			<?php echo $_SESSION['bed_no']; ?>
             </span>    
 		</div>	
-		<div style="width:198px; float:right;  margin-left:0px;">
-            <span style="margin-left:0px;"><strong>IP Id :</strong></span>
+		<div style="width:198px; float:left;  margin-left:180px;">
+            <span style="margin-left:0px;"><strong>IP Id:</strong></span>
             <span>
 			<?php echo $_SESSION['v_id']; ?>
             </span>    
+            <span style="margin-left:0px;"><strong>Mode:</strong></span>
+            <span style="margin-left:0px;"><strong>Panel:</strong></span>
 		</div>	
 		<div class="cls"></div>
       </div>
@@ -103,7 +111,7 @@ if($_REQUEST['error_msg1'])
 
      <div class="cls"></div>
      <div class="cls"></div>         
-            	<div style="background:lightgreen; padding:10px 0px; font-weight:700;">		
+            	<div style=" background:#AEB4C2; color:#000;  padding:10px 0px; font-weight:700;">		
             	    <div style="float:left; width:185px; padding-left:10px;">Document Name</div>
                     <div style="float:left; width:185px; padding-left:10px;">Category</div>
                     <div style="float:left; width:185px; padding-left:10px;">Date</div>
@@ -244,11 +252,11 @@ mysql_query("insert into mydocs VALUES('','$p_id','$v_id','$saved','$name','$ema
 <?php
 if ($count>$max)
 {
-	echo "You do not upload document more then 200";
+	echo "You can not upload document more than 200 documents";
 }
 ?>
-<div style="background:lightgreen; padding:10px 0px; font-weight:700;">		
-            	    <div style="float:left; width:250px; padding-left:10px;">Image</div>
+<div style=" background:#CCC; color:#000; padding:10px 0px; font-weight:700;">		
+            	    <div style="float:left; width:150px; padding-left:10px;">Image</div>
                     <div style="float:left; width:200px; padding-left:10px;">File Name</div>
                     <div style="float:left; width:200px; padding-left:10px;">Category</div>
                     <div style="float:left; width:200px; padding-left:10px;">Date</div>
@@ -273,7 +281,7 @@ echo'<div class="row" >';
 	//$link="http://localhost/$img";
 ?>
 
-<div style="background:lightgreen; padding:10px 0px; font-weight:700;">		
+<div style="background:#FFF; padding:10px 0px; font-weight:700;">		
             	    <div style="float:left; width:160px; padding-left:10px;">
             	    <?php 	echo ' <a href="'.$img.'"><img src="'.$img.'" height="50px"/></a>';?>
 					</div>

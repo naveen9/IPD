@@ -63,7 +63,7 @@ if($_REQUEST['error_msg1'])
         <div style="float:right; margin-top:-6px;">
           <input type="text" name="search1" placeholder="Bed No......." class="sea_rch" style="width:100px">
           <input type="submit" name="find1"value="Search" class="btn"/>
-    </div>
+        </div></form>
     <div class="cls"></div>
     </div>
 
@@ -71,11 +71,50 @@ if($_REQUEST['error_msg1'])
 
 
 
+<div id="main_center_container">
+<div class="record_feed">
 
 
+<form action="search_ip-management.php" method="post" autocomplete="off">
+    <div id="search_exist">
+        <div id="search_txt" class="p_adding">Search Existing Patient</div>
+        <div class="p_adding">
+            <span><input type="text" required autofocus name="search" placeholder="PID/Name/Ph/Email" id="inputStringVp" onKeyUp="lookupVp(this.value);" onBlur="fillVp();"  /></span>
+            <span><input type="submit" name="find" value="Search" class="btn"/></span>
+            <div align="left" class="suggestionsBoxAd" id="suggestionsVp" style="display:none;">
+                <div align="left" class="suggestionListAd" id="autoSuggestionsListVp">
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-<div class="right_top bg_head"> 
+</form>
+
+<form method="post" name="form1" action="create_vid1.php">
+    <div id="add_new_patient" style=" float:right">
+         	
+        <div style="float:left; width:35%">
+            <strong>Name  &nbsp;<?php echo $_SESSION['p_name'];?></strong>
+		</div>
+        <div style="float:left; width:20%">
+            <strong>Age&nbsp;  &nbsp;<?php echo $_SESSION['p_age'];?></strong>
+         </div>
+         <div style="float:left; width:20%; margin-top:0px;">  
+             <strong>Sex &nbsp;  &nbsp;<?php echo $_SESSION['p_gender'];?></strong>
+			
+		</div>
+        <div style="float:left; width:25%">
+            <strong> Phone&nbsp; &nbsp;</strong><span><label for><strong><?php echo $_SESSION['p_mob'];?></stronge> </label></span>
+            <?php $pid= $_SESSION['p_id'];?>
+			<?php //echo  $_SESSION['p_email'];?>
+		</div>
+     </div>
+  <div class="cls"></div>
+</div>
+
+
+<!--<div class="right_top bg_head"> 
 	<div style="float:left">
 		<div class="l_ft" style="width:300px;">
         	<div id="search_txt" class="p_adding">Search Existing Patient</div>
@@ -83,7 +122,7 @@ if($_REQUEST['error_msg1'])
             <div>
                 <input type="submit" name="find"value="Search" class="btn" style="width:60px; margin-right:100px"/>
            </div>
-	<!-- -->
+	 
 
 						<div align="left" class="suggestionsBoxAd" id="suggestionsIp" >
 <div align="left" class="suggestionListAd" id="autoSuggestionsListIp">
@@ -93,23 +132,23 @@ if($_REQUEST['error_msg1'])
 	
 	
 	
-<!--   -->	
+   	
 		   
 		   
            
         </div>
             <div class="l_ft">Patient Name:
-                <label for id=""><?php echo $p_name=$_SESSION['p_name'] ;?></label>
+                <label for id=""><?php //echo $p_name=$_SESSION['p_name'] ;?></label>
             </div>
             <div class="l_ft" style="margin-left: 170px;">Patient ID:
-                <label for id=""><?php echo $p_id=$_SESSION['p_id'] ;?></label>
+                <label for id=""><?php //echo $p_id=$_SESSION['p_id'] ;?></label>
             </div>
 
-    </div>
+    </div>-->
 
 
-    <div class="cls"></div>
-     </div>
+<!--    <div class="cls"></div>
+     </div>-->
 
 
     <div class="tot_amount" style="background: lightcyan; width: 100%; padding:5px 0px;">

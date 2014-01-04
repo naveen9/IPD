@@ -198,18 +198,36 @@ $q=mysql_query("select * from patient_info where patient_id='$p_id'")or die(mysq
                         </div>
                     </div>
 
+                <?php
                 
+                $q1=mysql_query("select * from description_medicine where p_id='$p_id'")or die(mysql_error());
+        
+            $search_result=mysql_fetch_array($q1);
+            $fetch_result=$search_result['Allergies'];
+            $fetch_result1=$search_result['Diseases'];
+            $fetch_result2=$search_result['Drugs'];
+            
+            $ex=  explode(',', $fetch_result);
+            $ex1=  explode(',', $fetch_result1);
+            $ex2=  explode(',', $fetch_result2);
+//            foreach ($ex as $key => $avalue) {
+//                echo $exx=$ex[$key];
+//            }
+            
+            
+            
+                ?>
                 <div class="f_l">
                     	<div>Height :</div>
                     </div>
                     <div class="f_l">
-                    	<div><input type="text" style="width:60px;" />&nbsp; cm</div>
+                        <div><input type="text" name="height" value="<?php echo $p_height;?>" style="width:60px;" />&nbsp; cm</div>
                     </div>
                 <div class="f_l">
                     	<div>Weight :</div>
                     </div>
                     <div class="f_l">
-                    	<div><input type="text" style="width:60px;" />&nbsp; Kg</div>
+                        <div><input type="text" name="weight" value="<?php echo $p_weight;?>" style="width:60px;" />&nbsp; Kg</div>
                     </div>
 
 
@@ -253,31 +271,33 @@ $q=mysql_query("select * from patient_info where patient_id='$p_id'")or die(mysq
                    <div></div>
                    <td>Allergies :</td>
                    <td>Diseases</td>
-                   <td>Photo</td>
+                   <td>Drugs</td>
                </tr>
                <tr>
                    
-                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
-                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
-                   
-               </tr>
-               <tr>
-                   
-                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
-                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="Allergies"value="<?php echo $ex[0];?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="Diseases"value="<?php echo $ex1[0];?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="Drugs"value="<?php echo $ex2[0];?>" /></td>
                    
                </tr>
                <tr>
                    
-                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
-                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="Allergies1"value="<?php echo $ex[1];?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="Diseases1"value="<?php echo $ex1[1];?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="Drugs1"value="<?php echo $ex2[1];?>" /></td>
                    
                </tr>
                <tr>
                    
-                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
-                   <td><input type="text" style=" width:100px;" name="relation"value="<?php echo $p_g_relation;?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="Allergies2"value="<?php echo $ex[2];?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="Diseases2"value="<?php echo $ex1[2];?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="Drugs2"value="<?php echo $ex2[2];?>" /></td>
+               </tr>
+               <tr>
                    
+                   <td><input type="text" style=" width:100px;" name="Allergies3"value="<?php echo $ex[3];?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="Diseases3"value="<?php echo $ex1[3];?>" /></td>
+                   <td><input type="text" style=" width:100px;" name="Drugs3"value="<?php echo $ex2[3];?>" /></td>
                </tr>
             </table>
 
@@ -302,7 +322,7 @@ $q=mysql_query("select * from patient_info where patient_id='$p_id'")or die(mysq
          </div>
         <div id="save_clear" style="text-align:right; margin-right:0px;"> 
         <span>
-          <input type="submit" name="save" value="save" class="btn" style="text-align:right">
+         <!-- <input type="submit" name="save" value="save" class="btn" style="text-align:right">-->
         </span> 
       </div>
       </div>
