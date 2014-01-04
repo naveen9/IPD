@@ -31,8 +31,14 @@ if($db==0)
   $_SESSION['v_id'];
 	 ?>
 
+ <div class="miscel_charge">        
+        <ul class="visit_sum" style="color:#FFFFFF; font-weight:600;">Ipd visit summary </ul>
+        <div class="cls"></div>
+    </div>
+
+
 <div id="opd_bill" style="height:20px;">
-  <div style="float:left; padding-left:5px">Ipd visit summary</div>
+  <div style="float:left; padding-left:1px; font-weight:600">Search Existing Patient</div>
 <form method="post" action="search_ipd_visit.php" autocomplete="off">
   <div style="float:right; margin-top:-6px;"> <span>
     <input type="text" name="search1" placeholder="Bed No" id="inputString" onKeyUp="lookup(this.value);" onBlur="fill();" style="width:60px; padding:1px 5px;"/>
@@ -59,7 +65,7 @@ if($_REQUEST['error_msg1'])
 <div class="record_feed">
 <form method="post" action="search_ipd_visit.php" autocomplete="off">
 <div id="search_exist">
-  <div id="search_txt" class="p_adding">Search Existing Patient</div>
+  <div id="search_txt" class="p_adding"></div>
   <div class="p_adding"> <span>
     <input type="text" name="search" placeholder="PID/Name/Ph/Email" id="inputStringCo" onKeyUp="lookupCo(this.value);" onBlur="fillCo();"  />
     </span> <span>
@@ -108,17 +114,20 @@ if($_REQUEST['error_msg1'])
 
   <div class="miscel_charge">
       <ul class="visit_sum">
-          <li><a href="s_search1.php">Visit</a></li>
-        <li><a href="s_search11.php">Procedure</a></li>
-        <li><a href="s_search2.php">Diagnosis</a></li>  
-        <li><a href="s_search.php">Miscellaneous Charges</a></li>
+          <li><a href="ipd_visit_summary.php">Home</a></li>
+          <li><a href="#">Visit</a></li>
+          <li><a href="#">Procedure</a></li>
+          
+        <li><a href="s_search2.php">Diagnostics</a></li>  
+        <li><a href="s_search.php">Misc. Charge</a></li>
         <li><a href="s_madison_search1.php">Medicine</a></li>
         <li><a href="s_madison_search.php">Consumamble</a></li>
-        <li><a href="s_search_operation_theater.php">Operation theator</a></li>
+        <li><a href="s_search_operation_theater.php">Operation</a></li>
         <li><a href="s_search_ip-management.php">Room Management</a></li>
         <li><a href="s_receive_payment_search1.php">Receive Payment</a></li>
         
-        <li><a href="s_clienthome.php"  class="last_li">Patient document</a></li>
+        <li><a href="s_clienthome.php" >Patient document</a></li>
+        <li><a href="#"  class="last_li">Discharge</a></li>
       </ul>
       <div class="cls" style="height:2px;"></div> 
     </div>

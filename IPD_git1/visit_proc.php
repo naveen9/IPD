@@ -79,17 +79,17 @@ if($_REQUEST['error_msg1'])
     <div id="add_new_patient" style=" float:right">
          	
         <div style="float:left; width:35%">
-			 Name  &nbsp;<?php echo $_SESSION['p_name'];?>
+            <strong>Name  &nbsp;<?php echo $_SESSION['p_name'];?></strong>
 		</div>
         <div style="float:left; width:20%">
-           Age&nbsp;  &nbsp;<?php echo $_SESSION['p_age'];?>
+            <strong>Age&nbsp;  &nbsp;<?php echo $_SESSION['p_age'];?></strong>
          </div>
          <div style="float:left; width:20%; margin-top:0px;">  
-         Sex &nbsp;  &nbsp;<?php echo $_SESSION['p_gender'];?>
+             <strong>Sex &nbsp;  &nbsp;<?php echo $_SESSION['p_gender'];?></strong>
 			
 		</div>
         <div style="float:left; width:25%">
-            Phone&nbsp; &nbsp;<span><label for><?php echo $_SESSION['p_mob'];?> </label></span>
+            <strong> Phone&nbsp; &nbsp;</strong><span><label for><strong><?php echo $_SESSION['p_mob'];?></stronge> </label></span>
             <?php $pid= $_SESSION['p_id'];?>
 			<?php //echo  $_SESSION['p_email'];?>
 		</div>
@@ -162,19 +162,9 @@ if($_REQUEST['error_msg1'])
         <input type="text" value="Doctor Visit" size="30" style="font-size:16px;" id="inputStringVpP" name="procedure" onKeyUp="lookupVpP(this.value);"
                            />
    </div>
-	<div class="l_ft" style="width:150px; float:left; text-align:left">
-		<select name="doc_incharge" style="height:28px;">
-			<?php
-            $sel=mysql_query("select doc_name from doc_master_table");
-            while ($data=mysql_fetch_array($sel)) {
-                echo '<option>'.$data[0].'</option>';
-            }
-            ?>
-        </select>
-	</div>
-
-
-
+<div class="l_ft" style="width:160px; text-align:center">
+<input type="text" size="10" style="font-size:16px;" name="doc_incharge" id="inputStringCoP" onKeyUp="lookupCoP(this.value);" 
+placeholder="Doctor Incharge" /></div>
                 <div class="l_ft" style="width:150px; float:left; text-align:left"><input type="text" name="amount" id="amount" style="width:100px;"/></div>
                 <div class="l_ft"  style="width:150px; float:left; text-align:left"><input type="text" name="discount" value="0" style="width:100px;"/></div>
                 <div class="l_ft"  style="width:150px; float:left; text-align:left"><input type="text" name="taxrate" value="0" style="width:100px;"/></div>
@@ -182,10 +172,17 @@ if($_REQUEST['error_msg1'])
                 <div class="l_ft"></div>
             </div>
 
-            <div align="left" class="suggestionsBoxVpP" id="suggestionsVpP" style="display:none;">
+           <div align="left" class="suggestionsBoxVpP" id="suggestionsVpP" style="display:none;">
                 <div align="left" class="suggestionListVpP" id="autoSuggestionsListVpP">
                 </div>
-            </div>
+           </div>
+                    
+                    <div align="left" class="suggestionsBoxCoP" id="suggestionsCoP" style="display:none;">
+<div align="left" class="suggestionListCoP" id="autoSuggestionsListCoP">
+</div>
+                    </div>
+                
+            
             <div class="cls"></div>
             <?php
             session_start();
@@ -252,16 +249,16 @@ $proc_name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb
 
 <div class="fill_data1">
     <span>Source</span>
-    <select name="source" style="width:190px; height:20px;"/>
-    <?php $select=("select source_name from source");
-    $query=mysql_query($select);
-    echo '<option>  </option>';
-    while($res=mysql_fetch_array($query)){
-
-        echo '<option>'.$res[0].'</option>';
-    }
+<!--    <select name="source" style="width:190px; height:20px;"/>
+    <?php //$select=("select source_name from source");
+//    $query=mysql_query($select);
+//    echo '<option>  </option>';
+//    while($res=mysql_fetch_array($query)){
+//
+//        echo '<option>'.$res[0].'</option>';
+//    }
     ?>
-    </select>
+    </select>-->
 
     <span style="margin-left:30px;">Remarks</span>
     <input name="remarks" type="text" style="width:60%; height:20px;" />
