@@ -31,7 +31,7 @@ $fetch=  mysql_fetch_array($p)
 <form method="post">
 
 
-Salary <input type="text" name="sal" value="<?php echo $fetch['salary'] ?>">
+Salary <input type="text" name="sal" value="<?php echo $fetch['salary']; ?>">
 
 <input type="submit" name="sub"      value="Update">
 </form>
@@ -41,7 +41,7 @@ Salary <input type="text" name="sal" value="<?php echo $fetch['salary'] ?>">
 
 
 
-echo $msg;
+
 $rc=  mysql_query("select * from employe where emp_id='$pid'")or die(mysql_error());
 ?>
 <hr>Employe salary<hr> 

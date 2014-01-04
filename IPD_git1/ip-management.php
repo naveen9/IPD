@@ -153,8 +153,12 @@ if($_REQUEST['error_msg1'])
 
     <div class="tot_amount" style="background: lightcyan; width: 100%; padding:5px 0px;">
     	<div style="padding-left:6px">Doctor Incharge:
-      <label for id=""><?php echo $_SESSION['ref_dr'] ;?></label>
+            <label for id=""><a href="dr_transfer.php?pid=<?php echo $_SESSION['visit_id'] ;?>" onclick="javascript:void window.open('dr_transfer.php?pid=<?php echo $_SESSION['visit_id']; ?>','1384252115538','width=500,height=200,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,');return false;"><?php echo $_SESSION['ref_dr']; ?></a></label>
       </div>
+        
+        
+        
+        
        <div>Status :
       <label for id=""><?php echo $_SESSION['stats'] ;?></label>
       </div>
