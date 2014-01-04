@@ -21,19 +21,22 @@ header("location: index.php?error_msg=".urlencode("Please fill Username and Pass
 }
 else
 {
-$log=  mysql_query("select id,verify,usertype from user_data where username='$uname' AND password='$pwd' ");
+$log=  mysql_query("select id,verify,usertype,username from user_data where username='$uname' AND password='$pwd' ");
 if(mysql_num_rows($log)==1)
 {
     
     $login=  mysql_fetch_array($log);
     $ver=$login['verify'];
     $id=$login['id'];
+    $username=$login['username'];
  if($ver==1)
  {
   $ut=$login['usertype'];
   if($ut=='admin')
   {
  $session_id=$_SESSION['session_id']=$id;
+ $session_id=$_SESSION['uname']=$username;
+ $session_id=$_SESSION['uid']=$id;
  header('location: User_veri.php');     
   }
   else

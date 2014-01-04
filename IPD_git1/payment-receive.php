@@ -69,6 +69,7 @@ if($db==0)
 			  $from=$_POST['from'];
 			  $amount=$_POST['amount'];
                           $date=$_SESSION['duty_date'];
+                          
 			  mysql_query("insert into payment_receive values('','$from','$amount','$date','$uname')");
 			  }
 			  ?>

@@ -178,20 +178,21 @@ $update2 = mysql_query("update visit_register set proc_status=0 where visit_id='
    
    <div id="tabs">
        <h3>
-           <p><a href="dashboard_new1.php?page=1">All bills</a>&nbsp;&nbsp;||
-    <a href="dashboard_new1.php?page=5">My duty</a>&nbsp;&nbsp;||
-    <a href="dashboard_new1.php?page=6">My bills</a>&nbsp;&nbsp; ||
-    <a href="dashboard_new1.php?page=2">My Receipts</a>&nbsp;&nbsp;||
-    <a href="dashboard_new1.php?page=3">Cancelled Bills</a>&nbsp;&nbsp;||
+           <?php $ipage=$_REQUEST['page']; ?>
+           <p><a href="dashboard_new1.php?page=1"><?php if($ipage==1) echo "<font color='green'>All bills</font>"; else { ?>All bills <?php }?></a>&nbsp;&nbsp;||
+    <a href="dashboard_new1.php?page=5"><?php if($ipage==5) echo "<font color='green'>My duty</font>"; else { ?>My duty <?php }?></a>&nbsp;&nbsp;||
+    <a href="dashboard_new1.php?page=6"><?php if($ipage==6) echo "<font color='green'>My bills</font>"; else { ?>My bills <?php }?></a>&nbsp;&nbsp; ||
+    <a href="dashboard_new1.php?page=2"><?php if($ipage==2) echo "<font color='green'>My Receipts</font>"; else { ?>My Receipts<?php }?></a>&nbsp;&nbsp;||
+    <a href="dashboard_new1.php?page=3"><?php if($ipage==3) echo "<font color='green'>Cancelled Bills</font>"; else { ?>Cancelled Bills <?php }?></a>&nbsp;&nbsp;||
      
-    <a href="dashboard_new1.php?page=4">My Account</a>
+    <a href="dashboard_new1.php?page=4"><?php if($ipage==4) echo "<font color='green'>My Account</font>"; else { ?>My Account <?php }?></a>
 	  </p> 
  </h3>
 
        <?php
        if($page==1)
        {
-           echo 'page1';
+           echo '<i>You are here</i> <font color="purple"><b>dashboard->All Bills</b></font>';
            ?>
        
           <div id="tabs-1">
@@ -200,7 +201,7 @@ $update2 = mysql_query("update visit_register set proc_status=0 where visit_id='
     $uid=$_SESSION['uid'];
          $maxid1=mysql_query("select MAX(`duty_id`) from duty_roster where user_id='$uid'");
          $rtr=  mysql_fetch_array($maxid1);
-        echo  $rmx=$rtr[0];
+       $rmx=$rtr[0];
         $sql=  mysql_query("select * from duty_roster where duty_id='$rmx' AND user_id='$uid'")or die(mysql_error());
         $fetch=  mysql_fetch_array($sql);
         #$sdate= $fetch['StartDate'];
@@ -213,9 +214,9 @@ $last_month;
 
 
         <form action="#" method="post">
-         <div class="bill_clr">
+            <div class="bill_clr" style=" background: gray; ">
 			    <div class="l_ft dash_width"><span>Procedure Id</span></div>
-				<div class="l_ft pro_name"><span>Procedure name</span></div>
+		<div class="l_ft pro_name"><span>Procedure name</span></div>
                 <div class="l_ft dash_width"><span>Amount</span></div>
                 <div class="l_ft dash_width"><span>Bill Id</span></div>
                 <div class="l_ft dash_width"><span>Ip ID</span></div>
@@ -268,12 +269,12 @@ while($row=  mysql_fetch_array($mysql))
                                                                  ">cancel this bill</a></span></div>
                 <div class="cls"></div>
 <?php } else{?>
-                <div class="l_ft dash_width" style="background:gray;"><?php echo $row['proc_id'];?></div>
-                <div class="l_ft pro_name" style=" background:gray;"><?php echo $row['proc_name'];?></div>
-                <div class="l_ft dash_width" style=" background:gray;"><?php echo $row['amount']; ?></div>
-                <div class="l_ft dash_width" style=" background:gray;"><?php echo $row['bill_id']; ?></div>
-                <div class="l_ft dash_width" style=" background:gray;"><?php echo $row['visit_id']; ?> </div>
-                <div class="l_ft dash_width ali_gnment" style=" background:gray;" ><span><?php $v=$row['visit_id'];
+                <div class="l_ft dash_width" style="background:lightgray;"><?php echo $row['proc_id'];?></div>
+                <div class="l_ft pro_name" style=" background:lightgray;"><?php echo $row['proc_name'];?></div>
+                <div class="l_ft dash_width" style=" background:lightgray;"><?php echo $row['amount']; ?></div>
+                <div class="l_ft dash_width" style=" background:lightgray;"><?php echo $row['bill_id']; ?></div>
+                <div class="l_ft dash_width" style=" background:lightgray;"><?php echo $row['visit_id']; ?> </div>
+                <div class="l_ft dash_width ali_gnment" style=" background:lightgray;" ><span><?php $v=$row['visit_id'];
         $my=  mysql_query("select p_id from visit_register where visit_id='$v'")or die(mysql_error());
         $sql=  mysql_fetch_array($my);
         $p_id=$sql['p_id'];
@@ -281,7 +282,7 @@ while($row=  mysql_fetch_array($mysql))
         
         $ary_data=  mysql_fetch_array($data);
         echo $ary_data['p_name']; ?></span></div>
-                <div class="l_ft dash_width ali_gnment"><span><a href="cancle_bills.php?id=<?php echo $row['proc_id']; ?>
+                <div class="l_ft dash_width ali_gnment" style="background:lightgray;"><span><a href="cancle_bills.php?id=<?php echo $row['proc_id']; ?>
                                                                  &name=<?php  echo $row['proc_name'];?>
                                                                  &amount=<?php echo $row['amount']; ?>
                                                                  &bill_id=<?php echo $row['bill_id']; ?>
@@ -476,7 +477,7 @@ while($row=  mysql_fetch_array($mysql))
        <?php
        if($page==2)
        {
-           echo 'page2';
+           echo '<i>You are here</i> <font color="purple"><b>dashboard->My Recipts</b></font>';
        ?>
              
      <div id="tabs-2">
@@ -569,14 +570,14 @@ while($row=  mysql_fetch_array($mysql))
        <?php
        if($page==3)
        {
-           echo 'page3';
+           echo '<i>You are here</i> <font color="purple"><b>dashboard->cancelled Bills</b></font>';
        ?>
        	<div id="tabs-3">
  <?php  
 	 $uid=$_SESSION['uid'];
          $maxid1=mysql_query("select MAX(`duty_id`) from duty_roster where user_id='$uid'");
          $rtr=  mysql_fetch_array($maxid1);
-        echo  $rmx=$rtr[0];
+          $rmx=$rtr[0];
         $sql=  mysql_query("select * from duty_roster where duty_id='$rmx' AND user_id='$uid'")or die(mysql_error());
         $fetch=  mysql_fetch_array($sql);
         $sdate= $fetch['StartDate'];
@@ -599,7 +600,7 @@ while($row=  mysql_fetch_array($mysql))
         <div id="head_lftw" style="float:left; width: 100px; ">Bill Id</div>
         <div id="head_lft" style="float:left; width: 100px; ">Ip ID</div>
         <div id="head_lftw" style="float:left; width: 100px; ">Patient name</div>
-        <div id="head_lftw" style="float:left; width: 100px; ">Canceled by</div>
+        <div id="head_lftw" style="float:left; width: 100px; ">cancelled  by</div>
 
 	 </div>
     
@@ -659,7 +660,7 @@ while($ftch=  mysql_fetch_array($mysql))
       <?php
        if($page==4)
        {
-           echo 'page4';
+      echo '<i>You are here</i> <font color="purple">dashboard-><b>My Accounts</b></font>';
        ?>
           <div id="tabs-4">
     <?php 
@@ -676,8 +677,12 @@ while($ftch=  mysql_fetch_array($mysql))
        $acc=  mysql_fetch_array($aco);
        
        
-       $aco=mysql_query("select SUM(amount) from payment_to_staff where recption='$uname' AND date between '$dutysdate' AND '$dutyedate' ")or die(mysql_error());	
+       $aco=mysql_query("select SUM(amount) from payment_to_staff where reception='$uname' AND date between '$dutysdate' AND '$dutyedate' ")or die(mysql_error());	
        $ps=mysql_fetch_array($aco);
+       
+       
+       $aco=mysql_query("select SUM(amount) from payment_to_vendor where reception='$uname' AND date between '$dutysdate' AND '$dutyedate' ")or die(mysql_error());	
+       $van=mysql_fetch_array($aco);
        
        
        ?>
@@ -779,7 +784,7 @@ while($ftch=  mysql_fetch_array($mysql))
           
           <div class="bill_height">
 			    <div class="l_ft bill_width_receive">Vendor</div>
-                <div class="l_ft bill_width_receive"><input type="text"  name="vendor"/></div>
+                            <div class="l_ft bill_width_receive"><input type="text"  value="<?php echo $van[0]; ?>" name="vendor"/></div>
 				<div id="link"><a href="payment-to-vendor.php" style="color:#84C1FF">Payment To Vendor</a></div>
           </div>
           <div class="cls"></div>
@@ -828,7 +833,7 @@ $vendor=$_POST['vendor'];
            <?php
        if($page==5)
        {
-           echo 'page5';
+           echo '<i>You are here</i> <font color="purple"><b>dashboard->My Duty</b></font>';
       ?>
            	 
       <div id="tabs-5">
@@ -957,14 +962,14 @@ $vendor=$_POST['vendor'];
           <?php
        if($page==6)
        {
-           echo 'page6';
+        echo '<i>You are here</i> <font color="purple"><b>dashboard->My Bills</b></font>';
        ?>
        <div id="tabs-6">
 	<?php  
 	 $uid=$_SESSION['uid'];
          $maxid1=mysql_query("select MAX(`duty_id`) from duty_roster where user_id='$uid'");
          $rtr=  mysql_fetch_array($maxid1);
-        echo  $rmx=$rtr[0];
+        $rmx=$rtr[0];
         $sql=  mysql_query("select * from duty_roster where duty_id='$rmx' AND user_id='$uid'")or die(mysql_error());
         $fetch=  mysql_fetch_array($sql);
         $sdate= $fetch['StartDate'];

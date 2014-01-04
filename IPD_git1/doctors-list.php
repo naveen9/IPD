@@ -1,8 +1,6 @@
-
 <?php
-
 session_start();
-    error_reporting(0);
+error_reporting(0);
     //require 'includes1/searchresults.php';
 include("condb.php");
 
@@ -22,23 +20,10 @@ if($db==0)
     echo 'You are not Authorized to access this page ';
     exit();
 }
-
-
-
-
 include("header.php");
 include("menubar.php");
 
-
-
-
-
-
-
-
-
-
-   echo ' <center><h3>Update Doctor Info</h3></center>';
+echo ' <center><h3>Update Doctor Info</h3></center>';
 
 
 //Select all doctor's from doctors master table
@@ -197,19 +182,6 @@ if(isset($_POST['delete'])){
     //              echo '</script>';
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
 
 <div id="main_center_container">
@@ -270,7 +242,7 @@ echo '</div>';
 //DOCTOR OPD TIME
 //echo '<div style="float:left; width:120px;">'.$row[11].'</div>';
 echo'<div class="cls"></div>';
-              //END MAIN DIV
+//END MAIN DIV
               echo '</div>';  
  
               $i++;

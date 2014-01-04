@@ -1,19 +1,26 @@
 <?php
+error_reporting(0);
 ob_start();
 session_start();
 require 'condb.php';
+
 $session_id=$_SESSION['session_id'];
 if(empty($session_id))
 {
     header("location:index.php");
 }
  else {
-$query=mysql_query("select `usertype` from `user_data` where `id`='$session_id' AND `usertype`='admin'")or die( mysql_error());
+$query=mysql_query("select * from `user_data` where `id`='$session_id' AND `usertype`='admin'")or die( mysql_error());
      if(mysql_num_rows($query)==0)
      {
-echo $session_id; 
+//echo $session_id; 
+$ftch=  mysql_fetch_array($query);
+$uname=$ftch['username'];
+$_SESSION['uname']=$uname;
+         
+echo 'You are not Authorized to access this page ';  
 
-   header("location: index.php?error_msg=".urlencode("Something went wrong"));       
+//header("location: index.php?error_msg=".urlencode("Something went wrong"));       
      }
  else {
 
@@ -29,10 +36,15 @@ if($js=='jsd')
 {
     echo '<script>alert("User Deleted")</script>';
 }
+
+
+	include("header.php");
+	include("menubar.php");
 ?>
 
+
 <h2 style="float: left;  "><a href="User_man.php">Click here to Set Users Privileges</a></h2>
-<h4 style="float: right;  "><a href="log_out.php">LogOut</a></h4>
+<!--<h4 style="float: right;  "><a href="log_out.php">LogOut</a></h4>-->
 
 <table border="1" bordercolor="teal" style="background-color:#293e6a; color: whitesmoke " width="100%"  cellpadding="3" cellspacing="3">
     

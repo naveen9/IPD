@@ -111,7 +111,7 @@ if(window.history.forward(1) != null)
             <span><strong></strong></span>
             <span id="sign">
                 <?php echo $_SESSION['uname']; echo $_SESSION['uid'];  ?> ||
-            	<a href="#">Change Password </a>
+                <a href="changepwd.php">Change Password </a>
                 <a href="#">&frasl;</a>
                 <a href="log_out.php" onclick="disableBackButton()">Log Out</a>
              </span> 
