@@ -28,6 +28,31 @@ unset($_SESSION['p_id']);
     header('location:patient-demographics.php');
 }
 
+if($page=='Discharge')
+{
+
+
+unset($_SESSION['p_id']);
+    unset($_SESSION['p_name']);
+    unset($_SESSION['p_age']);
+    unset($_SESSION['p_gender']);
+    unset($_SESSION['p_email']);
+    unset($_SESSION['p_mob']);
+    unset($_SESSION['v_id']);
+    unset($_SESSION['visit_id']);
+    unset($_SESSION['visit_date']);
+    unset($_SESSION['ref_dr']);
+    unset($_SESSION['bed_no']);
+    unset($_SESSION['crnt_gvn_anmt']);
+    unset($_SESSION['mode']);
+     unset($_SESSION['panel']);
+     unset($_SESSION['corp']);
+     unset ($_SESSION['b_id']);
+
+       
+    header('location:discharge.php');
+}
+
 
 if($page=='in')
 {

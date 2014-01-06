@@ -41,6 +41,7 @@ session_start();
             <li><a href="session_out.php?page=ro">Room Management</a></li>
 
            <li><a href="session_out.php?page=re">Receive Payment</a></li>
+           <li><a href="session_out.php?page=Discharge">Discharge patient </a></li>
           
            <li><a href="session_out.php?page=vii">Search Patient</a></li>  
         

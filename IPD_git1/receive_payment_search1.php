@@ -175,7 +175,7 @@ if($_POST['find1'])
     }
     else
     {
-        if($user=='admin')
+        if($user=='billingadmin')
         {
             $search1=$_POST['search1'];
             if($search1=="")
