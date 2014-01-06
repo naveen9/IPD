@@ -142,81 +142,72 @@ if($_POST['print_dis'])
 
 }
 ?>
+<div class="cls"></div>
+        <div id="opd_bill" style="height:20px;">
+            <div style="float:left">
+                <span class="p_adding">Discharge </span>
+            </div>
+            <form method="post" action="discharge_search.php" autocomplete="off">
+        <div style="float:right; margin-top:-6px;">
+          <input type="text" name="search1" placeholder="Bed No......." class="sea_rch" style="width:100px">
+          <input type="submit" name="find1"value="Search" class="btn"/>
+        </div>
+    <div class="cls"></div>
+    </div>
 
 
 
 
 
+<div id="main_center_container">
+<div class="record_feed">
 
 
 
-
-<div class="container">
-                <div class="record_feed">
-
-        <form method="post" action="discharge_search.php">
-
-
-            <div id="search_exist">
-                <div id="search_txt" class="p_adding">Search Existing Patient</div>
-                <div class="p_adding">
-        <span><input type="text" name="search" placeholder="PID/Name/Ph/Email" id="inputStringDi" onKeyUp="lookupDi(this.value);"   /></span>
-                    <span style="float:right; margin-top:5px;"><input type="submit" name="find" value="Search" class="btn"/></span>
-                    <div align="left" class="suggestionsBoxDi" id="suggestionsDi" style="display:none;">
-                        <div align="left" class="suggestionListDi" id="autoSuggestionsListDi">
-                        </div>
-                    </div>
+    <div id="search_exist">
+        <div id="search_txt" class="p_adding">Search Existing Patient</div>
+        <div class="p_adding">
+            <span><input type="text"  autofocus name="search" placeholder="PID/Name/Ph/Email" id="inputStringVp" onKeyUp="lookupVp(this.value);" onBlur="fillVp();"  /></span>
+            <span><input type="submit" name="find" value="Search" class="btn"/></span>
+            <div align="left" class="suggestionsBoxAd" id="suggestionsVp" style="display:none;">
+                <div align="left" class="suggestionListAd" id="autoSuggestionsListVp">
                 </div>
             </div>
+        </div>
+    </div>
+
+
+</form>
+
+
+    <div id="add_new_patient" style=" float:right">
+         	
+        <div style="float:left; width:35%">
+            <strong>Name  &nbsp;<?php echo $_SESSION['p_name'];?></strong>
+		</div>
+        <div style="float:left; width:20%">
+            <strong>Age&nbsp;  &nbsp;<?php echo $_SESSION['p_age'];?></strong>
+         </div>
+         <div style="float:left; width:20%; margin-top:0px;">  
+             <strong>Sex &nbsp;  &nbsp;<?php echo $_SESSION['p_gender'];?></strong>
+			
+		</div>
+        <div style="float:left; width:25%">
+            <strong> Phone&nbsp; &nbsp;</strong><span><label for><strong><?php echo $_SESSION['p_mob'];?></stronge> </label></span>
+            <?php $pid= $_SESSION['p_id'];?>
+			<?php //echo  $_SESSION['p_email'];?>
+		</div>
+     </div>
+  <div class="cls"></div>
+</div>
 
 
 
 
 
-            <div id="add_new_patient">
-<div id="add_txt" style="float:left; width:300px;">Add New Patient</div>
-    <div id="add_txt"  style="float:right; width:160px;">
-            	<span><input type="text" name="search1" placeholder="Bed No" id="inputString" onKeyUp="lookup(this.value);" onBlur="fill();" style="width:60px;"/></span>
-                <span><input type="submit" name="find1" value="Search" class="btn"/></span>
-            </div>
-              <div class="cls"></div>
-
-        </form>
-
-
-                <form method="post">
-                <div>
-
-                    <strong>Name</strong>
-
-                    <input type="text" name="name" value="<?php echo $_SESSION['p_name'];?>"/>
-
-                    <strong>Age&nbsp;</strong>
-
-                    <input type="text" name="age" maxlength="3" class="size_box" id="txtChar" value="<?php echo $_SESSION['p_age'];?>" style="width:60px;" />
 
 
 
-
-                    <input type="radio" name="gender" value="M" checked <?php if($_SESSION['p_gender']=='M'){echo "checked";} ?>/><strong>M</strong>
-                    <input type="radio" name="gender" value="F" <?php if($_SESSION['p_gender']=='F'){echo "checked";} ?>/><strong>F</strong>
-
-                    <strong>Phone&nbsp;</strong>
-
-                    <input type="text" name="phone" maxlength="10" class="size_input" id="txtChar" style="width:120px;" value="<?php echo $_SESSION['p_mob'];?>" />
-
-                    <?php $pid= $_SESSION['p_id'];?>
-
-
-                    <?php //echo  $_SESSION['p_email'];?>
-
-                    <!--  <input type="submit" name="create_visit_id" value="CreateVisitID" class="btn"/>-->
-                </div>
-
-                <div class="cls"></div>
-            </div>
-
-            <div class="cls"></div>
             <!--   ukewyg   -->
 
 
