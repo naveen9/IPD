@@ -20,8 +20,8 @@ if($db==0)
     echo 'You are not Authorized to access this page ';
     exit();
 }
-include("header.php");
-include("menubar.php");
+//include("header.php");
+//include("menubar.php");
 
 echo ' <center><h3>Update Doctor Info</h3></center>';
 
