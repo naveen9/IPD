@@ -1,9 +1,35 @@
 <?php
+ob_start();
 session_start();
 error_reporting(0);
-include("header.php");
-include("menubar.php");
-include("condb.php");
+ include("condb.php");
+ 
+ 
+ 
+ $uid=$_SESSION['uid'];
+ 
+if(empty($uid))
+{
+    header('location:index.php');
+    exit();
+}
+$sql=  mysql_query("select ipd_billing from user_priv where user_id='$uid' ")or die(mysql_error());
+$ft=  mysql_fetch_array($sql);
+$db=$ft['ipd_billing'];
+if(empty($_SESSION['uid']))
+{
+    header('location:index.php');
+}
+if($db==0)
+{
+    echo 'You are not Authorized to access this page ';
+    exit();
+}
+
+
+        
+        include("header.php");
+	include("menubar.php");
 //$event=$_REQUEST['event'];
 //$_SESSION['v_id']=$event;
 $v_id=$_SESSION['visit_id'];
