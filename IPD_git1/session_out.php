@@ -48,7 +48,6 @@ unset($_SESSION['p_id']);
      unset($_SESSION['panel']);
      unset($_SESSION['corp']);
      unset ($_SESSION['b_id']);
-
        
     header('location:discharge.php');
 }
