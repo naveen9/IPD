@@ -3,8 +3,6 @@ session_start();
 error_reporting(0);
     //require 'includes1/searchresults.php';
 include("condb.php");
-
-
 $uid=$_SESSION['uid'];
 
 if(empty($uid))

@@ -29,8 +29,6 @@ if($db==0)
     exit();
 }
 
-
-        
         include("header.php");
 	include("menubar.php");
    
